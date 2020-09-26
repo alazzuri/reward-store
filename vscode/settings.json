@@ -1,0 +1,13 @@
+{
+  "[typescript]": {
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": false,
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
+  "eslint.alwaysShowStatus": true
+}
