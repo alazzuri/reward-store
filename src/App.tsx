@@ -1,7 +1,5 @@
 import React from "react";
+import "./tailwind.output.css";
 
-function App() {
-  return <div className="App"></div>;
-}
-
+const App = () => <div></div>;
 export default App;
