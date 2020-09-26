@@ -4,6 +4,7 @@ import React from "react";
 //COMPONENTS
 import MainLogo from "../MainLogo";
 import DropDownButton from "../DropdownButton";
+import Banner from "../Banner";
 
 //ASSETS
 import Logo from "../../assets/logos/aerolab-logo.svg";
@@ -12,9 +13,13 @@ import MainImage2x from "../../assets/images/header-x2.png";
 
 //CONSTANTS
 import { dropDownItems } from "../../constants/dropdown";
-import Banner from "../Banner";
+
+//HOOKS
+import { useDropdown } from "../../hooks/useDropdown";
 
 const Header = () => {
+  const { open, toggle, ref } = useDropdown();
+
   return (
     <header className="relative bg-white w-full">
       <div className="max-w-screen-xl mx-auto">
@@ -27,7 +32,13 @@ const Header = () => {
             </div>
             <div className="flex md:ml-10 md:pr-4 w-3/4 justify-end items-center">
               <p className="font-medium text-gray-900 flex mr-8">Julia Coi</p>
-              <DropDownButton points={5000} menuItems={dropDownItems} />
+              <DropDownButton
+                points={5000}
+                menuItems={dropDownItems}
+                open={open}
+                toggle={toggle}
+                ref={ref}
+              />
             </div>
           </nav>
         </div>

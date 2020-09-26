@@ -1,5 +1,5 @@
 //REACT
-import React, { useState } from "react";
+import React, { RefObject } from "react";
 
 //ROUTER
 import { Link } from "react-router-dom";
@@ -48,15 +48,12 @@ const DropDownMenu: React.FC<{ menuItems: DropDownItem[] }> = ({
 const DropDownButton: React.FC<{
   points: number;
   menuItems: DropDownItem[];
-}> = ({ points, menuItems }) => {
-  const [showDropDown, setShowDropDown] = useState<boolean>(false);
-
-  const toggle = () => {
-    setShowDropDown((prevState) => !prevState);
-  };
-
+  open: boolean;
+  toggle: () => void;
+  ref: RefObject<HTMLDivElement>;
+}> = ({ points, menuItems, open, toggle, ref }) => {
   return (
-    <div className="relative inline-block text-left z-50">
+    <div className="relative inline-block text-left z-50" ref={ref}>
       <div>
         <span className="rounded-md shadow-sm">
           <button
@@ -70,7 +67,7 @@ const DropDownButton: React.FC<{
           </button>
         </span>
       </div>
-      {showDropDown && <DropDownMenu menuItems={menuItems} />}
+      {open && <DropDownMenu menuItems={menuItems} />}
     </div>
   );
 };
