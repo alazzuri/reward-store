@@ -6,4 +6,8 @@
   .banner {
     height: 35vw;
   }
+
+  .card-image {
+    height: 40%;
+  }
 }
