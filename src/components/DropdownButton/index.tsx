@@ -11,7 +11,7 @@ import { ReactComponent as Coin } from "../../assets/icons/coin.svg";
 //TYPESCRIPT
 import { DropDownItem } from "../../types/dropdownMenu";
 
-const DropDownMenu: React.FC<{ menuItems: DropDownItem[] }> = ({
+export const DropDownMenu: React.FC<{ menuItems: DropDownItem[] }> = ({
   menuItems,
 }) => {
   const itemClassNames = {
@@ -50,7 +50,7 @@ const DropDownButton: React.FC<{
   menuItems: DropDownItem[];
   open: boolean;
   toggle: () => void;
-  ref: RefObject<HTMLDivElement>;
+  ref?: RefObject<HTMLDivElement>;
 }> = ({ points, menuItems, open, toggle, ref }) => {
   return (
     <div className="relative inline-block text-left z-50" ref={ref}>
