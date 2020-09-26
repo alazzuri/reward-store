@@ -56,7 +56,7 @@ const DropDownButton: React.FC<{
   };
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left z-50">
       <div>
         <span className="rounded-md shadow-sm">
           <button
