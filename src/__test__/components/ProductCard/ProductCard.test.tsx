@@ -4,10 +4,12 @@ import React from "react";
 //TESTING METHODS
 import { render, userEvent } from "../../setupTest";
 import "@testing-library/jest-dom/extend-expect";
+
+//COMPONENTS
 import Card, { DefaultView, RedeemView } from "../../../components/Card";
+
+//MOCKS
 import { mockedProduct } from "../../mock/product";
-import { exec } from "child_process";
-import { mockComponent } from "react-dom/test-utils";
 
 describe("Product Card test", () => {
   test("Card renders without crashing", () => {
