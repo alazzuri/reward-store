@@ -2,10 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import useOutsideClick from "./useClickOutside";
 
 export const useDropdown = (initialState: boolean = false) => {
-  const [open, setOpen] = useState(initialState);
+  const [open, setOpen] = useState<boolean>(initialState);
+  const [disabled, setDisabled] = useState<boolean>(false);
   const toggle = () => setOpen((currentCondition) => !currentCondition);
   const outsideClickCallback = () => {
-    if (open) {
+    if (open && !disabled) {
       toggle();
     }
   };
@@ -25,5 +26,5 @@ export const useDropdown = (initialState: boolean = false) => {
     };
   }, []);
 
-  return { open, toggle, ref };
+  return { open, toggle, ref, setDisabled };
 };

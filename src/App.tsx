@@ -10,11 +10,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 //TAILWIND
 import "./tailwind.output.css";
 import Card from "./components/Card";
+import FilterBar from "./components/FilterBar";
 
 const App = () => (
-  <div className="bg-gray-100">
+  <div className="bg-gray-100 w-full">
     <Router>
       <Header />
+      <FilterBar />
       <Card
         name="Kodak 234"
         category="Cameras"

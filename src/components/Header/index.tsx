@@ -10,6 +10,8 @@ import Banner from "../Banner";
 import Logo from "../../assets/logos/aerolab-logo.svg";
 import MainImage from "../../assets/images/header-x1.png";
 import MainImage2x from "../../assets/images/header-x2.png";
+import { ReactComponent as ChevronDown } from "../../assets/icons/chevron-down.svg";
+import { ReactComponent as Coin } from "../../assets/icons/coin.svg";
 
 //CONSTANTS
 import { dropDownItems } from "../../constants/dropdown";
@@ -33,12 +35,15 @@ const Header = () => {
             <div className="flex md:ml-10 md:pr-4 w-3/4 justify-end items-center">
               <p className="font-medium text-gray-900 flex mr-8">Julia Coi</p>
               <DropDownButton
-                points={5000}
                 menuItems={dropDownItems}
                 open={open}
                 toggle={toggle}
                 ref={ref}
-              />
+              >
+                <Coin />
+                <span>5000</span>
+                <ChevronDown />
+              </DropDownButton>
             </div>
           </nav>
         </div>
