@@ -4,6 +4,9 @@ import React, { RefObject } from "react";
 //ROUTER
 import { Link } from "react-router-dom";
 
+//COMPONENTS
+import PillButton from "../PillButton";
+
 //ASSETS
 import { ReactComponent as ChevronDown } from "../../assets/icons/chevron-down.svg";
 import { ReactComponent as Coin } from "../../assets/icons/coin.svg";
@@ -55,17 +58,11 @@ const DropDownButton: React.FC<{
   return (
     <div className="relative inline-block text-left z-50" ref={ref}>
       <div>
-        <span className="rounded-md shadow-sm">
-          <button
-            type="button"
-            className="inline-flex justify-center items-center w-full rounded-full py-2 px-4 border border-gray-300 bg-gray-200 leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
-            onClick={toggle}
-          >
-            <Coin />
-            <span>{points}</span>
-            <ChevronDown />
-          </button>
-        </span>
+        <PillButton onHandleClick={toggle}>
+          <Coin />
+          <span>{points}</span>
+          <ChevronDown />
+        </PillButton>
       </div>
       {open && <DropDownMenu menuItems={menuItems} />}
     </div>
