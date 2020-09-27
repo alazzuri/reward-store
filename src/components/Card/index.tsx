@@ -9,13 +9,13 @@ import { ReactComponent as BuyWhite } from "../../assets/icons/buy-white.svg";
 import { ReactComponent as BuyBlue } from "../../assets/icons/buy-blue.svg";
 import { ReactComponent as Coin } from "../../assets/icons/coin.svg";
 
-const RedeemView: React.FC<{
+export const RedeemView: React.FC<{
   show: boolean;
   requiredPoints: number;
   buttonTitle?: string;
   onHandleClick: () => void;
 }> = ({ show, requiredPoints, buttonTitle = "Redeem Now", onHandleClick }) => (
-  <div className={show ? "block" : "hidden"}>
+  <div className={show ? "block" : "hidden"} data-testid="container">
     <BuyWhite className="absolute right-0 mr-3 top-0 mt-3 z-50" />
     <figure className="w-full h-full absolute bg-lightblue top-0 left-0 flex justify-center items-center flex-col">
       <figcaption className="w-1/2 text-white text-3xl flex justify-center items-center h-auto">
@@ -36,7 +36,7 @@ const RedeemView: React.FC<{
   </div>
 );
 
-const DefaultView: React.FC<{
+export const DefaultView: React.FC<{
   name: string;
   category: string;
   remainingPoints?: number;
@@ -51,7 +51,7 @@ const DefaultView: React.FC<{
         {remainingPoints && (
           <PillButton styles="w-auto bg-gray-900 bg-opacity-50 border-none">
             <span className="text-sm mr-2 text-white">
-              {`You need ${remainingPoints}`}
+              {`You need ${remainingPoints.toLocaleString()}`}
             </span>
             <Coin />
           </PillButton>
