@@ -28,7 +28,7 @@ const filterItems: Array<{
   menuItems: DropDownItem[];
 }> = [
   { type: "category", defaultLabel: "All categories", menuItems: categories },
-  { type: "price", defaultLabel: "price", menuItems: price },
+  { type: "price", defaultLabel: "Price", menuItems: price },
 ];
 
 export const FilterButton: React.FC<{
