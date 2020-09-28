@@ -52,11 +52,15 @@ const FilterBar: React.FC = () => {
   const priceLabel = filters.price || "Price";
 
   return (
-    <div className="w-11/12 mt-16 mb-4 pb-6 flex flex-row items-center justify-start mx-auto border-b-2">
-      <p className="w-1/4 px-3 text-lg text-gray-700">16 of 32 products</p>
-      <div className="w-3/4 flex items-center border-l-2 justify-start px-6">
-        <p className="w-auto text-gray-600">Sort By</p>
-        <div className="w-3/5 flex justify-evenly">
+    <div className="w-11/12 mt-16 mb-4 pb-6 flex flex-col lg:flex-row items-center justify-start mx-auto border-b-2">
+      <p className="w-100 mb-4 lg:mb-0 lg:w-1/4 px-3 text-lg text-gray-700">
+        16 of 32 products
+      </p>
+      <div className="w-full lg:w-3/4 flex flex-col lg:flex-row lg:items-center lg:border-l-2 justify-start px-6">
+        <p className=" w-100 text-center mb-4 lg:mb-0 lg:w-2/12 text-gray-600">
+          Sort By
+        </p>
+        <div className=" w-full mb-4 lg:mb-0 lg:w-3/5 flex justify-around lg:justify-between">
           <DropDownButton
             menuItems={categories}
             open={categoriesOpen}
@@ -101,7 +105,7 @@ const FilterBar: React.FC = () => {
           </DropDownButton>
         </div>
       </div>
-      <div className="flex w-1/6 flex justify-around">
+      <div className="flex  w-1/2 lg:w-1/6 flex justify-around">
         <ChevronLeft className="cursor-pointer transform hover:scale-105" />
         <ChevronRigth className="cursor-pointer transform hover:scale-105" />
       </div>
