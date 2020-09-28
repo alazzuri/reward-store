@@ -14,7 +14,7 @@ export const useDropdown = (initialState: boolean = false) => {
 
   const escapeListener = useCallback((e: KeyboardEvent) => {
     if (e.key === "Escape") {
-      toggle();
+      setOpen(false);
     }
   }, []);
 

@@ -15,26 +15,58 @@ import { useDropdown } from "../../hooks/useDropdown";
 //TYPESCRIPT
 import { DropDownItem } from "../../types/dropdownMenu";
 
+///MOCKED DATA
 const categories: DropDownItem[] = [{ title: "Sign out", type: "primary" }];
 const price: DropDownItem[] = [
   { title: "Top To Bottom", type: "primary" },
   { title: "Bottom to Top", type: "primary" },
 ];
 
-const FilterBar: React.FC = () => {
-  const {
-    open: categoriesOpen,
-    toggle: toggleCategories,
-    ref: categoriesRef,
-    setDisabled: disableInCategories,
-  } = useDropdown();
-  const {
-    open: priceOpen,
-    toggle: togglePrice,
-    ref: priceRef,
-    setDisabled: disableInPrice,
-  } = useDropdown();
+const filterItems: Array<{
+  type: "category" | "price";
+  defaultLabel: string;
+  menuItems: DropDownItem[];
+}> = [
+  { type: "category", defaultLabel: "All categories", menuItems: categories },
+  { type: "price", defaultLabel: "price", menuItems: price },
+];
 
+export const FilterButton: React.FC<{
+  menuItems: DropDownItem[];
+  handleClick: (e: any) => void;
+  itemType: string;
+  buttonStyles?: string;
+  labelStyles?: string;
+  label: string;
+  dropdownColor?: string;
+}> = ({
+  menuItems,
+  handleClick,
+  itemType,
+  buttonStyles,
+  labelStyles,
+  label,
+  dropdownColor,
+}) => {
+  const { open, toggle, ref, setDisabled } = useDropdown();
+  return (
+    <DropDownButton
+      menuItems={menuItems}
+      open={open}
+      toggle={toggle}
+      ref={ref}
+      disableOutside={setDisabled}
+      handleClick={handleClick}
+      itemType={itemType}
+      styles={buttonStyles}
+    >
+      <span className={labelStyles}>{label}</span>
+      <ChevronDown color={dropdownColor} />
+    </DropDownButton>
+  );
+};
+
+const FilterBar: React.FC = () => {
   const [filters, setFilters] = useState<{ category?: string; price?: string }>(
     {}
   );
@@ -48,8 +80,32 @@ const FilterBar: React.FC = () => {
     setFilters((prevState) => ({ ...prevState, [itemtype]: textContent }));
   };
 
-  const categoryLabel = filters.category || "All categories";
-  const priceLabel = filters.price || "Price";
+  const renderFilterButtons = (
+    filterItems: Array<{
+      type: "category" | "price";
+      defaultLabel: string;
+      menuItems: DropDownItem[];
+    }>
+  ) =>
+    filterItems.map((item) => {
+      const label = filters[item.type] || item.defaultLabel;
+
+      return (
+        <FilterButton
+          itemType={item.type}
+          menuItems={item.menuItems}
+          label={label}
+          handleClick={onSelectFilter}
+          buttonStyles={filters[item.type] && "bg-lightblue"}
+          labelStyles={`p-2 filter-button ${
+            filters[item.type]
+              ? "text-gray-100"
+              : "text-gray-700 hover:text-gray-600"
+          }`}
+          dropdownColor={filters[item.type] ? "white" : "gray"}
+        />
+      );
+    });
 
   return (
     <div className="w-11/12 mt-16 mb-4 pb-6 flex flex-col lg:flex-row items-center justify-start mx-auto border-b-2">
@@ -61,48 +117,7 @@ const FilterBar: React.FC = () => {
           Sort By
         </p>
         <div className=" w-full mb-4 lg:mb-0 lg:w-3/5 flex justify-around lg:justify-between">
-          <DropDownButton
-            menuItems={categories}
-            open={categoriesOpen}
-            toggle={toggleCategories}
-            ref={categoriesRef}
-            disableOutside={disableInCategories}
-            handleClick={onSelectFilter}
-            itemType="category"
-            styles={filters.category && "bg-lightblue"}
-          >
-            <span
-              className={`p-2 filter-button ${
-                filters.category
-                  ? "text-gray-100"
-                  : "text-gray-700 hover:text-gray-600"
-              }`}
-            >
-              {categoryLabel}
-            </span>
-            <ChevronDown color={filters.category ? "white" : "gray"} />
-          </DropDownButton>
-          <DropDownButton
-            menuItems={price}
-            open={priceOpen}
-            toggle={togglePrice}
-            ref={priceRef}
-            disableOutside={disableInPrice}
-            handleClick={onSelectFilter}
-            itemType="price"
-            styles={filters.price && "bg-lightblue"}
-          >
-            <span
-              className={`p-2 filter-button ${
-                filters.price
-                  ? "text-gray-100"
-                  : "text-gray-700 hover:text-gray-600"
-              }`}
-            >
-              {priceLabel}
-            </span>
-            <ChevronDown color={filters.price ? "white" : "gray"} />
-          </DropDownButton>
+          {renderFilterButtons(filterItems)}
         </div>
       </div>
       <div className="flex  w-1/2 lg:w-1/6 flex justify-around">
