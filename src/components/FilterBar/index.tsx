@@ -3,11 +3,10 @@ import React, { useState } from "react";
 
 //COMPONENTS
 import DropDownButton from "../DropdownButton";
+import Pagination from "../Pagination";
 
 //ASSETS
 import { ReactComponent as ChevronDown } from "../../assets/icons/chevron-down.svg";
-import { ReactComponent as ChevronLeft } from "../../assets/icons/arrow-left.svg";
-import { ReactComponent as ChevronRigth } from "../../assets/icons/arrow-right.svg";
 
 //HOOKS
 import { useDropdown } from "../../hooks/useDropdown";
@@ -97,10 +96,7 @@ const FilterBar: React.FC = () => {
     });
 
   return (
-    <div className="w-11/12 mt-16 mb-4 pb-6 flex flex-col lg:flex-row items-center justify-start mx-auto border-b-2">
-      <p className="w-100 mb-4 lg:mb-0 lg:w-1/4 px-3 text-lg text-gray-700">
-        16 of 32 products
-      </p>
+    <Pagination>
       <div className="w-full lg:w-3/4 flex flex-col lg:flex-row lg:items-center lg:border-l-2 justify-start px-6">
         <p className=" w-100 text-center mb-4 lg:mb-0 lg:w-2/12 text-gray-600">
           Sort By
@@ -109,11 +105,7 @@ const FilterBar: React.FC = () => {
           {renderFilterButtons(filterItems)}
         </div>
       </div>
-      <div className="flex  w-1/2 lg:w-1/6 flex justify-around">
-        <ChevronLeft className="cursor-pointer transform hover:scale-105" />
-        <ChevronRigth className="cursor-pointer transform hover:scale-105" />
-      </div>
-    </div>
+    </Pagination>
   );
 };
 

@@ -35,4 +35,22 @@
     grid-auto-flow: dense;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
+
+  .fa-heart {
+    color: red;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
+  .github {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-right: 20px;
+  }
+
+  .github i {
+    margin-right: 5px;
+  }
 }
