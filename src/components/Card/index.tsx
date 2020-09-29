@@ -47,7 +47,7 @@ export const DefaultView: React.FC<{
       <BuyBlue className="absolute right-0 mr-4 top-0 mt-3" />
     )}
     <figure className="px-2 py-4">
-      <figcaption className="w-1/2 p-0 absolute right-0 mr-4">
+      <figcaption className="w-auto p-0 absolute right-0 mr-4">
         {remainingPoints && (
           <PillButton styles="w-auto bg-gray-900 bg-opacity-50 border-none">
             <span className="text-sm mr-2 text-white">
@@ -63,7 +63,7 @@ export const DefaultView: React.FC<{
         alt={`product-${name}`}
       />
     </figure>
-    <div className="py-4">
+    <div className="py-4 border-t-2 border-gray-400">
       <div className="font-bold text-base mb-2 text-gray-500">{category}</div>
       <p className="text-gray-600 text-xl font-bold">{name}</p>
     </div>
@@ -93,8 +93,8 @@ const Card: React.FC<{
 
   return (
     <div
-      className={`max-w-sm rounded shadow-2xl bg-white divide-y divide-gray-400 h-auto m-2 border-gray-400 px-6 relative cursor-pointer transition-all duration-75 ${
-        isHover && "transform -translate-y-5 box-shadow-hover"
+      className={`max-w-sm rounded shadow-2xl bg-white h-auto m-2 border-gray-400 px-6 relative cursor-pointer transition-all duration-100 product-card ${
+        isHover && "transform -translate-y-2 box-shadow-hover"
       }`}
       onMouseEnter={toggleView}
       onMouseLeave={toggleView}
