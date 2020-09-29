@@ -8,8 +8,6 @@ import "@testing-library/jest-dom/extend-expect";
 //COMPONENTS
 import FilterBar from "../../../components/FilterBar";
 
-//MOCKS
-
 describe("FilterBar test", () => {
   test("FilterBar renders without crashing", () => {
     render(<FilterBar />);
