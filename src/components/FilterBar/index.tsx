@@ -15,21 +15,8 @@ import { useDropdown } from "../../hooks/useDropdown";
 //TYPESCRIPT
 import { DropDownItem } from "../../types/dropdownMenu";
 
-///MOCKED DATA
-const categories: DropDownItem[] = [{ title: "Sign out", type: "primary" }];
-const price: DropDownItem[] = [
-  { title: "Top To Bottom", type: "primary" },
-  { title: "Bottom to Top", type: "primary" },
-];
-
-const filterItems: Array<{
-  type: "category" | "price";
-  defaultLabel: string;
-  menuItems: DropDownItem[];
-}> = [
-  { type: "category", defaultLabel: "All categories", menuItems: categories },
-  { type: "price", defaultLabel: "Price", menuItems: price },
-];
+//CONSTANTS
+import { filterItems } from "../../constants/filters";
 
 export const FilterButton: React.FC<{
   menuItems: DropDownItem[];
@@ -89,6 +76,12 @@ const FilterBar: React.FC = () => {
   ) =>
     filterItems.map((item) => {
       const label = filters[item.type] || item.defaultLabel;
+      const buttonStyles = filters[item.type] && "bg-lightblue";
+      const dropdownColor = filters[item.type] ? "white" : "gray";
+
+      const labelColor = filters[item.type]
+        ? "text-gray-100"
+        : "text-gray-700 hover:text-gray-600";
 
       return (
         <FilterButton
@@ -96,13 +89,9 @@ const FilterBar: React.FC = () => {
           menuItems={item.menuItems}
           label={label}
           handleClick={onSelectFilter}
-          buttonStyles={filters[item.type] && "bg-lightblue"}
-          labelStyles={`p-2 filter-button ${
-            filters[item.type]
-              ? "text-gray-100"
-              : "text-gray-700 hover:text-gray-600"
-          }`}
-          dropdownColor={filters[item.type] ? "white" : "gray"}
+          buttonStyles={buttonStyles}
+          labelStyles={`p-2 filter-button ${labelColor}`}
+          dropdownColor={dropdownColor}
         />
       );
     });
