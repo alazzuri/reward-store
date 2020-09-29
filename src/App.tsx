@@ -11,19 +11,14 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./tailwind.output.css";
 import Card from "./components/Card";
 import FilterBar from "./components/FilterBar";
+import ProductsContainer from "./containers/ProductsContainer";
 
 const App = () => (
   <div className="bg-gray-100 w-full">
     <Router>
       <Header />
       <FilterBar />
-      <Card
-        name="Kodak 234"
-        category="Cameras"
-        requiredPoints={10000}
-        onHandleClick={() => alert("lala")}
-        imgSrc="https://picsum.photos/200"
-      />
+      <ProductsContainer />
     </Router>
   </div>
 );
