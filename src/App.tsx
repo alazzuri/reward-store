@@ -12,6 +12,8 @@ import "./tailwind.output.css";
 import Card from "./components/Card";
 import FilterBar from "./components/FilterBar";
 import ProductsContainer from "./containers/ProductsContainer";
+import Pagination from "./components/Pagination";
+import Footer from "./components/Footer";
 
 const App = () => (
   <div className="bg-gray-100 w-full">
@@ -19,6 +21,8 @@ const App = () => (
       <Header />
       <FilterBar />
       <ProductsContainer />
+      <Pagination />
+      <Footer />
     </Router>
   </div>
 );
