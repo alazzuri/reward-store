@@ -23,7 +23,7 @@ describe("FilterBar test", () => {
     expect(filterBarTitle).toBeInTheDocument;
   });
 
-  test("FilterBar has dropdown icons", () => {
+  test("FilterBar has icons", () => {
     const { getByText } = render(<FilterBar />);
 
     const chevronLeft = getByText(/arrow-left.svg/i);
