@@ -17,6 +17,8 @@ import Banner from "../../../components/Banner";
 import Logo from "../../../assets/logos/aerolab-logo.svg";
 import MainImage from "../../../assets/images/header-x1.png";
 import MainImage2x from "../../../assets/images/header-x2.png";
+import { ReactComponent as ChevronDown } from "../../../assets/icons/chevron-down.svg";
+import { ReactComponent as Coin } from "../../../assets/icons/coin.svg";
 
 //CONSTANTS
 import { dropDownItems } from "../../../constants/dropdown";
@@ -42,28 +44,29 @@ describe("Header Test", () => {
 
   test("Dropdown button renders without crashing", () => {
     render(
-      <DropDownButton
-        points={5000}
-        menuItems={dropDownItems}
-        open={false}
-        toggle={jest.fn}
-      />
+      <DropDownButton menuItems={dropDownItems} open={false} toggle={jest.fn}>
+        <span>5000</span>
+        <ChevronDown />
+      </DropDownButton>
     );
   });
 
   test("Dropdown button contains info", () => {
     const { getByText } = render(
-      <DropDownButton
-        points={5000}
-        menuItems={dropDownItems}
-        open={false}
-        toggle={jest.fn}
-      />
+      <DropDownButton menuItems={dropDownItems} open={false} toggle={jest.fn}>
+        <Coin />
+        <span>5000</span>
+        <ChevronDown />
+      </DropDownButton>
     );
 
     const points = getByText(/5000/i);
+    const coin = getByText(/coin.svg/i);
+    const chevronDown = getByText(/chevron-down.svg/i);
 
     expect(points).toBeInTheDocument;
+    expect(coin).toBeInTheDocument;
+    expect(chevronDown).toBeInTheDocument;
   });
 
   test("Dropdown menu renders without crashing", () => {
