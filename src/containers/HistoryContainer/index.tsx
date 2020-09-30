@@ -2,7 +2,6 @@
 import React from "react";
 
 //COMPONENTS
-import Card from "../../components/Card";
 import HistoryItem from "../../components/HistoryItem";
 import HistorySkeleton from "../../components/Skeletons/HistorySkeleton";
 
