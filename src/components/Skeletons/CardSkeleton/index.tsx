@@ -4,7 +4,7 @@ import React from "react";
 //COMPONENTS
 import Skeleton from "react-loading-skeleton";
 
-const LoadingSkeleton: React.FC = () => (
+const CardSkeleton: React.FC = () => (
   <div className="max-w-sm rounded shadow-2xl bg-white h-auto m-2 border-gray-400 px-6 relative cursor-pointer transition-all duration-100 product-card">
     <div className="py-4">
       <Skeleton height={250} />
@@ -18,4 +18,4 @@ const LoadingSkeleton: React.FC = () => (
   </div>
 );
 
-export default LoadingSkeleton;
+export default CardSkeleton;

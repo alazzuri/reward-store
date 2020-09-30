@@ -3,7 +3,8 @@ import React from "react";
 
 //COMPONENTS
 import Card from "../../components/Card";
-import CardSkeleton from "../../components/Skeletons/CardSkeleton";
+import HistoryItem from "../../components/HistoryItem";
+import HistorySkeleton from "../../components/Skeletons/HistorySkeleton";
 
 const products = [
   {
@@ -11,73 +12,81 @@ const products = [
     category: "Cameras",
     cost: 10000,
     imgSrc: " https://picsum.photos/200",
+    date: "23/05/2020",
   },
   {
     name: "Kodak 234",
     category: "Cameras",
     cost: 10000,
     imgSrc: " https://picsum.photos/200",
+    date: "23/05/2020",
   },
   {
     name: "Kodak 234",
     category: "Cameras",
     cost: 10000,
     imgSrc: " https://picsum.photos/200",
+    date: "23/05/2020",
   },
   {
     name: "Kodak 234",
     category: "Cameras",
     cost: 10000,
     imgSrc: " https://picsum.photos/200",
+    date: "23/05/2020",
   },
   {
     name: "Kodak 234",
     category: "Cameras",
     cost: 10000,
     imgSrc: " https://picsum.photos/200",
+    date: "23/05/2020",
   },
   {
     name: "Kodak 234",
     category: "Cameras",
     cost: 10000,
     imgSrc: " https://picsum.photos/200",
+    date: "23/05/2020",
   },
   {
     name: "Kodak 234",
     category: "Cameras",
     cost: 10000,
     imgSrc: " https://picsum.photos/200",
+    date: "23/05/2020",
   },
   {
     name: "Kodak 234",
     category: "Cameras",
     cost: 10000,
     imgSrc: " https://picsum.photos/200",
+    date: "23/05/2020",
   },
   {
     name: "Kodak 234",
     category: "Cameras",
     cost: 10000,
     imgSrc: " https://picsum.photos/200",
+    date: "23/05/2020",
   },
 ];
 
-const ProductsContainer = () => {
+const HistoryContainer = () => {
   return (
-    <section className="w-11/12 cards-container mx-auto">
+    <section className="w-11/12 mx-auto">
       {products.map((product) => (
-        <Card
+        <HistoryItem
           name={product.name}
           category={product.category}
-          requiredPoints={product.cost}
-          onHandleClick={() => alert("lala")}
-          imgSrc={product.imgSrc}
-          remainingPoints={3000}
+          cost={product.cost}
+          imgUrl={product.imgSrc}
+          date={product.date}
         />
       ))}
-      <CardSkeleton />
+      <HistorySkeleton />
     </section>
   );
 };
 
-export default ProductsContainer;
+export default HistoryContainer;
