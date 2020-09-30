@@ -1,5 +1,5 @@
 //REACT
-import React from "react";
+import React, { Suspense } from "react";
 
 //COMPONENTS
 import Header from "./components/Header";
@@ -13,15 +13,18 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 //TAILWIND
 import "./tailwind.output.css";
+import Spinner from "./components/Spinner";
 
 const App = () => (
   <div className="bg-gray-100 w-full">
     <Router>
-      <Header />
-      <FilterBar />
-      <ProductsContainer />
-      <Pagination />
-      <Footer />
+      <Suspense fallback={<Spinner />}>
+        <Header />
+        <FilterBar />
+        <ProductsContainer />
+        <Pagination />
+        <Footer />
+      </Suspense>
     </Router>
   </div>
 );
