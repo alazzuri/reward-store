@@ -1,5 +1,9 @@
+//REACT
 import React from "react";
+
+//COMPONENTS
 import Card from "../../components/Card";
+import LoadingSkeleton from "../../components/Skeleton";
 
 const products = [
   {
@@ -71,6 +75,7 @@ const ProductsContainer = () => {
           remainingPoints={3000}
         />
       ))}
+      <LoadingSkeleton />
     </section>
   );
 };

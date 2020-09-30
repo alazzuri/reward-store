@@ -20,6 +20,7 @@ const App = () => (
       <Header />
       <FilterBar />
       <ProductsContainer />
+
       <Pagination />
       <Footer />
     </Router>
