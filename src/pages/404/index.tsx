@@ -7,7 +7,7 @@ import NotFoundImage from "../../assets/images/404.png";
 
 const NotFoundPage = () => {
   return (
-    <div className="w-screen h-screen bg-gray-100 flex flex-col justify-center items-center">
+    <div className="w-screen h-screen bg-gray-300 flex flex-col justify-center items-center">
       <p className="text-4xl mb-4 text-gray-800">Not Found</p>
       <img src={NotFoundImage} alt="not-found" className="w-1/4" />
       <Link

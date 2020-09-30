@@ -7,9 +7,13 @@ import FilterBar from "./components/FilterBar";
 import Pagination from "./components/Pagination";
 import ProductsContainer from "./containers/ProductsContainer";
 import Footer from "./components/Footer";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 //ROUTER
 import { BrowserRouter as Router } from "react-router-dom";
+
+//PAGES
+import NotFoundPage from "./pages/404";
 
 //TAILWIND
 import "./tailwind.output.css";
@@ -17,15 +21,18 @@ import Spinner from "./components/Spinner";
 
 const App = () => (
   <div className="bg-gray-100 w-full">
-    <Router>
-      <Suspense fallback={<Spinner />}>
-        <Header />
-        <FilterBar />
-        <ProductsContainer />
-        <Pagination />
-        <Footer />
-      </Suspense>
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <Suspense fallback={<Spinner />}>
+          <Header />
+          <FilterBar />
+          <ProductsContainer />
+          <Pagination />
+          <Footer />
+        </Suspense>
+        <NotFoundPage />
+      </Router>
+    </ErrorBoundary>
   </div>
 );
 export default App;
