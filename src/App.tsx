@@ -18,6 +18,8 @@ import NotFoundPage from "./pages/404";
 //TAILWIND
 import "./tailwind.output.css";
 import Spinner from "./components/Spinner";
+import HistoryItem from "./components/HistoryItem";
+import HistoryContainer from "./containers/HistoryContainer";
 
 const App = () => (
   <div className="bg-gray-100 w-full">
@@ -27,10 +29,10 @@ const App = () => (
           <Header />
           <FilterBar />
           <ProductsContainer />
+          <HistoryContainer />
           <Pagination />
           <Footer />
         </Suspense>
-        <NotFoundPage />
       </Router>
     </ErrorBoundary>
   </div>

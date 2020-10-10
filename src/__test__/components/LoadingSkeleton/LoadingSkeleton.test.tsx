@@ -7,9 +7,14 @@ import "@testing-library/jest-dom/extend-expect";
 
 //COMPONENTS
 import CardSkeleton from "../../../components/Skeletons/CardSkeleton";
+import HistorySkeleton from "../../../components/Skeletons/HistorySkeleton";
 
-describe("CardSkeleton test", () => {
+describe("Loading Skeletons test", () => {
   test("CardSkeleton renders without crashing", () => {
     render(<CardSkeleton />);
+  });
+
+  test("History Skeleton renders without crashing", () => {
+    render(<HistorySkeleton />);
   });
 });
