@@ -5,64 +5,10 @@ import React from "react";
 import Card from "../../components/Card";
 import CardSkeleton from "../../components/Skeletons/CardSkeleton";
 
-const products = [
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-  },
-];
+//TYPESCRIPT
+import { Product } from "../../types/products";
 
-const ProductsContainer = () => {
+const ProductsContainer: React.FC<{ products: Product[] }> = ({ products }) => {
   return (
     <section className="w-11/12 cards-container mx-auto">
       {products.map((product) => (

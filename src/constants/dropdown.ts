@@ -1,6 +1,7 @@
 import { DropDownItem } from "../types/dropdownMenu";
 
 export const dropDownItems: DropDownItem[] = [
-  { title: "Get more points", path: "./", type: "secondary" },
-  { title: "Sign out", path: "./", type: "primary" },
+  { title: "Home", path: "/", type: "primary" },
+  { title: "Get more points", path: "/points", type: "secondary" },
+  { title: "History", path: "/history", type: "secondary" },
 ];
