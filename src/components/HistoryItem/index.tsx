@@ -11,13 +11,13 @@ const HistoryItem: React.FC<HistoryItemProps> = ({
   name,
   category,
   date,
-  imgUrl,
+  imgSrc,
   cost,
 }) => {
   return (
     <div className="md:w-3/4 mx-auto flex items-center justify-between rounded shadow-2xl bg-white h-auto m-2 border-gray-400 px-4 md:px-8 py-3 text-gray-700 font-bold my-3">
       <img
-        src={imgUrl}
+        src={imgSrc}
         alt={`product-${name}`}
         className="rounded-full w-1/6 md:w-auto md:h-20"
       />
