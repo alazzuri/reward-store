@@ -18,7 +18,7 @@ describe("HistoryItem test", () => {
         name={mockedHistoryItem.name}
         category={mockedHistoryItem.category}
         cost={mockedHistoryItem.cost}
-        imgUrl={mockedHistoryItem.imgSrc}
+        imgSrc={mockedHistoryItem.imgSrc}
         date={mockedHistoryItem.date}
       />
     );
@@ -30,7 +30,7 @@ describe("HistoryItem test", () => {
         name={mockedHistoryItem.name}
         category={mockedHistoryItem.category}
         cost={mockedHistoryItem.cost}
-        imgUrl={mockedHistoryItem.imgSrc}
+        imgSrc={mockedHistoryItem.imgSrc}
         date={mockedHistoryItem.date}
       />
     );
@@ -47,7 +47,7 @@ describe("HistoryItem test", () => {
         name={mockedHistoryItem.name}
         category={mockedHistoryItem.category}
         cost={mockedHistoryItem.cost}
-        imgUrl={mockedHistoryItem.imgSrc}
+        imgSrc={mockedHistoryItem.imgSrc}
         date={mockedHistoryItem.date}
       />
     );
@@ -69,7 +69,7 @@ describe("HistoryItem test", () => {
         name={mockedHistoryItem.name}
         category={mockedHistoryItem.category}
         cost={mockedHistoryItem.cost}
-        imgUrl={mockedHistoryItem.imgSrc}
+        imgSrc={mockedHistoryItem.imgSrc}
         date={mockedHistoryItem.date}
       />
     );
