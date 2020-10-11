@@ -141,7 +141,7 @@ describe("Product Card test", () => {
     );
 
     const shopImg = getByText(/buy-white.svg/i);
-    const coin = getByText("coin.svg");
+    const coin = getByText(/coin.svg/i);
 
     expect(shopImg).toBeInTheDocument;
     expect(coin).toBeInTheDocument;

@@ -11,7 +11,6 @@ import MainLogo from "../../../components/MainLogo";
 import DropDownButton, {
   DropDownMenu,
 } from "../../../components/DropdownButton";
-import Banner from "../../../components/Banner";
 
 //ASSETS
 import Logo from "../../../assets/logos/aerolab-logo.svg";
@@ -81,43 +80,5 @@ describe("Header Test", () => {
 
     expect(getPoints).toBeInTheDocument;
     expect(signOut).toBeInTheDocument;
-  });
-
-  test("Banner renders without crashing", () => {
-    render(
-      <Banner
-        title="Electronics"
-        imgSrc={MainImage}
-        srcSet={`${MainImage2x} 2x`}
-      />
-    );
-  });
-
-  test("Banner has image", () => {
-    const { getByRole } = render(
-      <Banner
-        title="Electronics"
-        imgSrc={MainImage}
-        srcSet={`${MainImage2x} 2x`}
-      />
-    );
-    const image = getByRole("img");
-
-    expect(image).toHaveAttribute("src", MainImage);
-    expect(image).toHaveAttribute("srcSet", `${MainImage2x} 2x`);
-  });
-
-  test("Banner has title", () => {
-    const { getByText } = render(
-      <Banner
-        title="Electronics"
-        imgSrc={MainImage}
-        srcSet={`${MainImage2x} 2x`}
-      />
-    );
-
-    const title = getByText(/Electronics/i);
-
-    expect(title).toBeInTheDocument;
   });
 });

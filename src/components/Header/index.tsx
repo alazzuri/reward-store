@@ -4,12 +4,9 @@ import React from "react";
 //COMPONENTS
 import MainLogo from "../MainLogo";
 import DropDownButton from "../DropdownButton";
-import Banner from "../Banner";
 
 //ASSETS
 import Logo from "../../assets/logos/aerolab-logo.svg";
-import MainImage from "../../assets/images/header-x1.png";
-import MainImage2x from "../../assets/images/header-x2.png";
 import { ReactComponent as ChevronDown } from "../../assets/icons/chevron-down.svg";
 import { ReactComponent as Coin } from "../../assets/icons/coin.svg";
 
@@ -23,7 +20,7 @@ const Header = () => {
   const { open, toggle, ref } = useDropdown();
 
   return (
-    <header className="relative bg-white w-full">
+    <header className="relative bg-white w-full p-6">
       <div className="max-w-screen-xl mx-auto">
         <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
           <nav className="relative flex items-center justify-between sm:h-10">
@@ -48,11 +45,6 @@ const Header = () => {
           </nav>
         </div>
       </div>
-      <Banner
-        title="Electronics"
-        imgSrc={MainImage}
-        srcSet={`${MainImage2x} 2x`}
-      />
     </header>
   );
 };
