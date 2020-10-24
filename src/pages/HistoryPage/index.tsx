@@ -6,72 +6,6 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import HistoryContainer from "../../containers/HistoryContainer";
 
-const products = [
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-    date: "23/05/2020",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-    date: "23/05/2020",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-    date: "23/05/2020",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-    date: "23/05/2020",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-    date: "23/05/2020",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-    date: "23/05/2020",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-    date: "23/05/2020",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-    date: "23/05/2020",
-  },
-  {
-    name: "Kodak 234",
-    category: "Cameras",
-    cost: 10000,
-    imgSrc: " https://picsum.photos/200",
-    date: "23/05/2020",
-  },
-];
-
 const HistoryPage = () => {
   return (
     <>
@@ -85,7 +19,7 @@ const HistoryPage = () => {
             {`Hope you're enjoying these awesome products :)`}
           </h3>
         </div>
-        <HistoryContainer products={products} />
+        <HistoryContainer />
       </div>
       <Footer />
     </>

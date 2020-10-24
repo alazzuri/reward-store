@@ -27,6 +27,7 @@ import { getDefaultHeaders } from "../../utils/headers";
 
 //TYPESCRIPT
 import { User } from "../../types/user";
+import { shortenResults } from "../../utils/api";
 
 const Header: React.FC = () => {
   const { open, toggle, ref } = useDropdown();
@@ -53,12 +54,21 @@ const Header: React.FC = () => {
     if (!user) executeFetch();
 
     if (userData) {
-      setState((prevState: any) => ({ ...prevState, user: userData }));
+      const shortenedHistory = shortenResults(userData.redeemHistory);
+      const normalizedUserData = {
+        ...userData,
+        redeemHistory: shortenedHistory,
+      };
+
+      setState((prevState: any) => ({
+        ...prevState,
+        user: normalizedUserData,
+      }));
     } else if (hasError) {
       console.error(errorMessage);
       throw new Error(errorMessage);
     }
-  }, [userData, hasError, user]);
+  }, [userData, hasError]);
 
   return (
     <header className="relative bg-white w-full p-6">

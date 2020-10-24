@@ -1,9 +1,16 @@
 //REACT
-import React from "react";
+import React, { useContext } from "react";
 
 //COMPONENTS
 import HistoryItem from "../../components/HistoryItem";
 import HistorySkeleton from "../../components/Skeletons/HistorySkeleton";
+import { AppContext } from "../../context/AppContext";
+
+//LIBS
+//@ts-ignore
+import uuid from "react-uuid";
+
+//TYPESCRIPT
 import { HistoryItemProps } from "../../types/history";
 
 const TableHeading: React.FC = () => (
@@ -17,22 +24,49 @@ const TableHeading: React.FC = () => (
   </div>
 );
 
-const HistoryContainer: React.FC<{ products: HistoryItemProps[] }> = ({
-  products,
-}) => {
+const LoadingSkeletons: React.FC<{ amount: number }> = ({ amount }) => {
+  const itemsToRender = Array.from(new Array(amount));
+
+  return (
+    <>
+      {itemsToRender.map(() => (
+        <HistorySkeleton key={uuid()} />
+      ))}
+    </>
+  );
+};
+
+const HistoryCards: React.FC<{ historyItems: HistoryItemProps[] }> = ({
+  historyItems,
+}) => (
+  <>
+    {historyItems.map((product) => (
+      <HistoryItem
+        name={product.name}
+        category={product.category}
+        cost={product.cost}
+        img={product.img}
+        createDate={product.createDate}
+      />
+    ))}
+  </>
+);
+
+const HistoryContainer: React.FC = () => {
+  const {
+    state: { user },
+  } = useContext(AppContext);
+
+  console.log(user?.redeemHistory);
+
   return (
     <section className="w-full mx-auto">
       <TableHeading />
-      {products.map((product) => (
-        <HistoryItem
-          name={product.name}
-          category={product.category}
-          cost={product.cost}
-          imgSrc={product.imgSrc}
-          date={product.date}
-        />
-      ))}
-      <HistorySkeleton />
+      {user?.redeemHistory.length ? (
+        <HistoryCards historyItems={user.redeemHistory} />
+      ) : (
+        <LoadingSkeletons amount={16} />
+      )}
     </section>
   );
 };
