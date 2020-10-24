@@ -15,9 +15,8 @@ const useOutsideClick = <T extends HTMLDivElement>(callback: Callback) => {
         callback(e);
       }
     };
-    document.addEventListener("click", handleClickOutside, true);
-    return () =>
-      document.removeEventListener("click", handleClickOutside, true);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, [callback, ref]);
 
   return ref;

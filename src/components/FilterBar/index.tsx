@@ -101,7 +101,7 @@ const FilterBar: React.FC = () => {
         <p className=" w-100 text-center mb-4 lg:mb-0 lg:w-2/12 text-gray-600">
           Sort By
         </p>
-        <div className=" w-full mb-4 lg:mb-0 lg:w-3/5 flex justify-around lg:justify-between">
+        <div className="w-full mb-4 lg:mb-0 lg:w-3/5 flex justify-around lg:justify-between">
           {renderFilterButtons(filterItems)}
         </div>
       </div>
