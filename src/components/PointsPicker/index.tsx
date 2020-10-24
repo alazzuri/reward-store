@@ -68,7 +68,15 @@ const PointsPicker: React.FC = () => {
   }, [earnedCoins, isDisabled]);
 
   return (
-    <div className="mx-auto flex flex-col items-center">
+    <div className="mx-auto h-screen flex flex-col items-center">
+      <div className="mt-6 w-full py-16 flex flex-col items-center justify-center mb-2">
+        <h2 className="w-3/4 text-4xl md:text-5xl text-gray-700">
+          Test your luck!
+        </h2>
+        <h3 className="w-3/4 text-3xl md:text-4xl text-gray-600">
+          {`Click the button and get some points :)`}
+        </h3>
+      </div>
       <div className="mx-auto w-11/12 md:w-1/2 lg:w-1/3 flex justify-center md:justify-between items-center py-6 flex-wrap">
         {prizePoints.map((number, index) => (
           <PointPill
