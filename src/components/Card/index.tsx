@@ -39,7 +39,7 @@ export const RedeemView: React.FC<{
 export const DefaultView: React.FC<{
   name: string;
   category: string;
-  remainingPoints?: number;
+  remainingPoints?: number | boolean;
   imgSrc: string;
 }> = ({ name, category, remainingPoints, imgSrc }) => (
   <div>
@@ -58,7 +58,7 @@ export const DefaultView: React.FC<{
         )}
       </figcaption>
       <img
-        className="w-full mx-auto h-64"
+        className="w-auto mx-auto h-64"
         src={imgSrc}
         alt={`product-${name}`}
       />
@@ -75,7 +75,7 @@ const Card: React.FC<{
   category: string;
   imgSrc: string;
   requiredPoints: number;
-  remainingPoints?: number;
+  remainingPoints?: number | boolean;
   onHandleClick: () => void;
 }> = ({
   name,

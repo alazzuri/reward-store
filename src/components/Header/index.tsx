@@ -53,15 +53,12 @@ const Header: React.FC = () => {
     if (!user) executeFetch();
 
     if (userData) {
-      setState((prevState) => ({ ...prevState, user: userData }));
+      setState((prevState: any) => ({ ...prevState, user: userData }));
     } else if (hasError) {
       console.error(errorMessage);
       throw new Error(errorMessage);
     }
   }, [userData, hasError, user]);
-
-  ///TODO - ver como juega con el products
-  if (isLoading) return <Spinner />;
 
   return (
     <header className="relative bg-white w-full p-6">
