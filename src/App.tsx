@@ -12,13 +12,18 @@ import Routes from "./routes";
 //TAILWIND
 import "./tailwind.output.css";
 
+//CONTEXT
+import AppContextProvider from "./context/AppContext";
+
 const App = () => (
   <div className="bg-gray-100 w-full">
     <Suspense fallback={<Spinner />}>
       <ErrorBoundary>
-        <Router>
-          <Routes />
-        </Router>
+        <AppContextProvider>
+          <Router>
+            <Routes />
+          </Router>
+        </AppContextProvider>
       </ErrorBoundary>
     </Suspense>
   </div>
