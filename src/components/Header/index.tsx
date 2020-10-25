@@ -48,7 +48,8 @@ const Header: React.FC = () => {
     if (!user) executeFetch();
 
     if (userData) {
-      const shortenedHistory = shortenResults(userData.redeemHistory);
+      const sortedData = [...userData.redeemHistory].reverse();
+      const shortenedHistory = shortenResults(sortedData);
       const normalizedUserData = {
         ...userData,
         redeemHistory: shortenedHistory,
