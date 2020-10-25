@@ -38,6 +38,11 @@ import {
 import { API_URL } from "../../constants/api";
 
 const ProductsPage = () => {
+  const [filters, setFilters] = useState<{
+    category?: string;
+    price?: string;
+  }>({});
+
   const {
     data: productsData,
     hasError,
@@ -68,13 +73,6 @@ const ProductsPage = () => {
     nextPage,
     prevPage,
   } = usePagination(currentProducts || [], 16);
-
-  const [filters, setFilters] = useState<{
-    category?: string;
-    price?: string;
-  }>({});
-
-  const dropdownFilterItems = createFilters(productsCategories);
 
   const onSelectFilter = (e: any) => {
     const {
@@ -143,7 +141,7 @@ const ProductsPage = () => {
         handlePrev={prevPage}
         maxItems={totalItems}
         currentItems={itemsInPage}
-        filterItems={dropdownFilterItems}
+        filterItems={createFilters(productsCategories)}
         handleSelect={onSelectFilter}
         filters={filters}
         handleClear={onClearFilters}
