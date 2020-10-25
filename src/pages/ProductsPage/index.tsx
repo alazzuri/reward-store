@@ -17,14 +17,11 @@ import MainImage from "../../assets/images/header-x1.png";
 import MainImage2x from "../../assets/images/header-x2.png";
 
 //HOOKS
-import useFetch from "../../hooks/useFetch";
-
-//TYPES
-import { Product } from "../../types/products";
+import { useGetFetch } from "../../hooks/useFetch";
 
 //UTILS
 import { API_URL } from "../../constants/api";
-import { getDefaultHeaders } from "../../utils/headers";
+import { getDefaultHeaders } from "../../utils/fetchOptions";
 
 const ProductsPage = () => {
   const {
@@ -32,13 +29,7 @@ const ProductsPage = () => {
     hasError,
     errorMessage,
     executeFetch,
-  }: {
-    data: Product[];
-    isLoading: boolean;
-    hasError: boolean;
-    errorMessage: string;
-    executeFetch: () => void;
-  } = useFetch(`${API_URL}/products`, getDefaultHeaders());
+  } = useGetFetch(`${API_URL}/products`, getDefaultHeaders());
 
   const {
     state: { products },

@@ -1,5 +1,8 @@
 //REACT
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+//CONTEXT
+import { AppContext } from "../../context/AppContext";
 
 //COMPONENTS
 import PointPill from "../../components/PointPill";
@@ -7,6 +10,9 @@ import SuccessModal from "../../components/SuccessModal";
 
 //ASSETS
 import animationData from "../../assets/lotties/treasure-box-coine.json";
+
+//HOOKS
+import { usePostFetch } from "../../hooks/useFetch";
 
 //LIBS
 //@ts-ignore
@@ -16,19 +22,32 @@ import withReactContent from "sweetalert2-react-content";
 
 //UITLS
 import { pickRandomElement } from "../../utils/randomPicker";
+import { createFetchBody, getPostHeaders } from "../../utils/fetchOptions";
 
 //CONSTANTS
 import { prizePoints } from "../../constants/earnPoints";
+import { API_URL } from "../../constants/api";
+
+//TYPESCRIPT
+import { User } from "../../types/user";
+import { Product } from "../../types/products";
 
 const PointsPicker: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [earnedCoins, setEarnedCoins] = useState<number | null>(null);
+  const { executeFetch, data, hasError, errorMessage } = usePostFetch();
+  const { setState } = useContext(AppContext);
 
   const MySwal = withReactContent(Swal);
 
+  const updatePoints = () => {
+    const body = createFetchBody({ amount: earnedCoins });
+    executeFetch(`${API_URL}/user/points`, getPostHeaders(), body);
+  };
+
   const showSuccessNotification = async (earnedCoins: number) => {
-    const sentNotification = await MySwal.fire({
+    await MySwal.fire({
       html: (
         <SuccessModal earnedCoins={earnedCoins} animationData={animationData} />
       ),
@@ -37,13 +56,8 @@ const PointsPicker: React.FC = () => {
       height: "100%",
       position: "top-start",
       showConfirmButton: false,
-      onOpen: () => {
-        setTimeout(() => MySwal.clickConfirm(), 5000);
-      },
+      onOpen: updatePoints,
     });
-
-    if (sentNotification)
-      return MySwal.fire(<p>Coins added to your account</p>);
   };
 
   const pickRandomPrize = () => {
@@ -67,9 +81,33 @@ const PointsPicker: React.FC = () => {
     }
   }, [earnedCoins, isDisabled]);
 
+  useEffect(() => {
+    if (data?.message) {
+      setTimeout(() => {
+        MySwal.clickConfirm();
+        MySwal.fire(
+          "Coins added to your account",
+          `New Coins: ${data["New Points"]}`,
+          "success"
+        );
+      }, 3000);
+      setState((prevState: { user: User; products: Product[] }) => ({
+        ...prevState,
+        user: { ...prevState.user, points: data["New Points"] },
+      }));
+
+      setSelectedIndex(null);
+    }
+
+    if (hasError) {
+      console.error(errorMessage);
+      MySwal.fire("An error has occurred", "Please try again later", "error");
+    }
+  }, [data, hasError, errorMessage]);
+
   return (
     <div className="mx-auto h-screen flex flex-col items-center">
-      <div className="mt-6 w-full py-16 flex flex-col items-center justify-center mb-2">
+      <div className="mt-3 w-full py-16 flex flex-col items-center justify-center mb-0">
         <h2 className="w-3/4 text-4xl md:text-5xl text-gray-700">
           Test your luck!
         </h2>
