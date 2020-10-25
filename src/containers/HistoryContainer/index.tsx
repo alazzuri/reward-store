@@ -1,10 +1,9 @@
 //REACT
-import React, { useContext } from "react";
+import React from "react";
 
 //COMPONENTS
 import HistoryItem from "../../components/HistoryItem";
 import HistorySkeleton from "../../components/Skeletons/HistorySkeleton";
-import { AppContext } from "../../context/AppContext";
 
 //LIBS
 //@ts-ignore
@@ -52,18 +51,14 @@ const HistoryCards: React.FC<{ historyItems: HistoryItemProps[] }> = ({
   </>
 );
 
-const HistoryContainer: React.FC = () => {
-  const {
-    state: { user },
-  } = useContext(AppContext);
-
-  console.log(user?.redeemHistory);
-
+const HistoryContainer: React.FC<{ redeemHistory: HistoryItemProps[] }> = ({
+  redeemHistory,
+}) => {
   return (
     <section className="w-full mx-auto">
       <TableHeading />
-      {user?.redeemHistory.length ? (
-        <HistoryCards historyItems={user.redeemHistory} />
+      {redeemHistory.length ? (
+        <HistoryCards historyItems={redeemHistory} />
       ) : (
         <LoadingSkeletons amount={16} />
       )}

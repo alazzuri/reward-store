@@ -52,8 +52,8 @@ const ProductsPage = () => {
   } = useContext(AppContext);
 
   const {
-    maxPage,
-    currentPage,
+    itemsInPage,
+    totalItems,
     currentData,
     nextPage,
     prevPage,
@@ -94,8 +94,8 @@ const ProductsPage = () => {
       <Pagination
         onClickNext={nextPage}
         onClickPrev={prevPage}
-        maxItems={currentData().length * maxPage}
-        currentItems={currentData().length * currentPage}
+        maxItems={totalItems}
+        currentItems={itemsInPage}
       />
       <Footer />
     </>
