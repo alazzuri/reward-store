@@ -1,5 +1,5 @@
 //REACT
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 //CONTEXT
 import { AppContext } from "../../context/AppContext";
@@ -30,6 +30,9 @@ import {
 
 //CONSTANTS
 import { API_URL } from "../../constants/api";
+import { Product } from "../../types/products";
+import { log } from "console";
+import { createFilters, getCategories } from "../../utils/filters";
 
 const ProductsPage = () => {
   const {
@@ -59,6 +62,25 @@ const ProductsPage = () => {
     prevPage,
   } = usePagination(products || [], 16);
 
+  const [filters, setFilters] = useState<{
+    category?: string;
+    price?: string;
+  }>({});
+
+  const productsCategories = getCategories(products);
+  const dropdownFilterItems = createFilters(productsCategories);
+
+  const onSelectFilter = (e: any) => {
+    const {
+      dataset: { itemtype },
+      textContent,
+    } = e.target;
+
+    setFilters((prevState) => ({ ...prevState, [itemtype]: textContent }));
+  };
+
+  const onClearFilters = () => setFilters({});
+
   const onRedeemProduct = (productId: string) => {
     const body = createFetchBody(productId);
     redeemProduct(`${API_URL}/redeem`, getPostHeaders(), body);
@@ -86,7 +108,16 @@ const ProductsPage = () => {
         imgSrc={MainImage}
         srcSet={`${MainImage2x} 2x`}
       />
-      <FilterBar handleNext={nextPage} handlePrev={prevPage} />
+      <FilterBar
+        handleNext={nextPage}
+        handlePrev={prevPage}
+        maxItems={totalItems}
+        currentItems={itemsInPage}
+        filterItems={dropdownFilterItems}
+        handleSelect={onSelectFilter}
+        filters={filters}
+        handleClear={onClearFilters}
+      />
       <ProductsContainer
         products={currentData()}
         onHandleRedeem={onRedeemProduct}
