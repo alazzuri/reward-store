@@ -24,10 +24,7 @@ import { useGetFetch } from "../../hooks/useFetch";
 
 //UTILS
 import { getDefaultHeaders } from "../../utils/fetchOptions";
-import { shortenResults } from "../../utils/data";
-
-//TYPESCRIPT
-import { User } from "../../types/user";
+import { formatNumber, shortenResults } from "../../utils/data";
 
 const Header: React.FC = () => {
   const { open, toggle, ref } = useDropdown();
@@ -86,7 +83,7 @@ const Header: React.FC = () => {
                 ref={ref}
               >
                 <Coin />
-                <span>{user?.points}</span>
+                <span>{formatNumber(user?.points)}</span>
                 <ChevronDown />
               </DropDownButton>
             </div>

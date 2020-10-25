@@ -4,6 +4,9 @@ import React from "react";
 //ASSETS
 import { ReactComponent as Coin } from "../../assets/icons/coin.svg";
 
+//UTILS
+import { formatNumber } from "../../utils/data";
+
 const PointPill: React.FC<{ number: number; selected?: boolean }> = ({
   number,
   selected,
@@ -13,7 +16,7 @@ const PointPill: React.FC<{ number: number; selected?: boolean }> = ({
       selected && "bg-lightblue text-gray-100"
     }`}
   >
-    <span className="mr-2">{number.toLocaleString()}</span>
+    <span className="mr-2">{formatNumber(number)}</span>
     <Coin />
   </figure>
 );

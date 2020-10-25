@@ -7,7 +7,7 @@ const Banner: React.FC<{
   title: string;
 }> = ({ imgSrc, srcSet = "", title }) => {
   return (
-    <div className="mt-6 w-full banner relative flex items-end">
+    <div className="w-full banner relative flex items-end">
       <img
         src={imgSrc}
         srcSet={srcSet}
