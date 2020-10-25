@@ -1,12 +1,27 @@
 //REACT
-import React from "react";
+import React, { useContext } from "react";
 
 //COMPONENTS
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import Pagination from "../../components/Pagination";
 import HistoryContainer from "../../containers/HistoryContainer";
+import { AppContext } from "../../context/AppContext";
+import usePagination from "../../hooks/usePagination";
 
 const HistoryPage = () => {
+  const {
+    state: { user },
+  } = useContext(AppContext);
+
+  const {
+    totalItems,
+    itemsInPage,
+    currentData,
+    nextPage,
+    prevPage,
+  } = usePagination(user?.redeemHistory || [], 6);
+
   return (
     <>
       <Header />
@@ -19,7 +34,13 @@ const HistoryPage = () => {
             {`Hope you're enjoying these awesome products :)`}
           </h3>
         </div>
-        <HistoryContainer />
+        <Pagination
+          onClickNext={nextPage}
+          onClickPrev={prevPage}
+          currentItems={itemsInPage}
+          maxItems={totalItems}
+        />
+        <HistoryContainer redeemHistory={currentData()} />
       </div>
       <Footer />
     </>

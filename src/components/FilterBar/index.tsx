@@ -52,7 +52,10 @@ export const FilterButton: React.FC<{
   );
 };
 
-const FilterBar: React.FC = () => {
+const FilterBar: React.FC<{
+  handlePrev: () => void;
+  handleNext: () => void;
+}> = ({ handlePrev, handleNext }) => {
   const [filters, setFilters] = useState<{ category?: string; price?: string }>(
     {}
   );
@@ -96,7 +99,7 @@ const FilterBar: React.FC = () => {
     });
 
   return (
-    <Pagination>
+    <Pagination onClickPrev={handlePrev} onClickNext={handleNext}>
       <div className="w-full lg:w-3/4 flex flex-col lg:flex-row lg:items-center lg:border-l-2 justify-start px-6">
         <p className=" w-100 text-center mb-4 lg:mb-0 lg:w-2/12 text-gray-600">
           Sort By
