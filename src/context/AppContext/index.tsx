@@ -3,7 +3,12 @@ import { Product } from "../../types/products";
 import { User } from "../../types/user";
 
 export const AppContext = createContext<{
-  state: { user?: User; products?: Product[] };
+  state: {
+    user?: User;
+    products?: Product[];
+    productsCategories?: string[];
+    filteredProducts?: Product[];
+  };
   setState: React.Dispatch<React.SetStateAction<{}>>;
 }>({ state: {}, setState: () => {} });
 

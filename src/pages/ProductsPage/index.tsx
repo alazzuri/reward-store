@@ -1,5 +1,5 @@
 //REACT
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 //CONTEXT
 import { AppContext } from "../../context/AppContext";
@@ -27,11 +27,22 @@ import {
   getDefaultHeaders,
   getPostHeaders,
 } from "../../utils/fetchOptions";
+import {
+  createFilters,
+  getCategories,
+  sortByCategory,
+  sortByPrice,
+} from "../../utils/filters";
 
 //CONSTANTS
 import { API_URL } from "../../constants/api";
 
 const ProductsPage = () => {
+  const [filters, setFilters] = useState<{
+    category?: string;
+    price?: string;
+  }>({});
+
   const {
     data: productsData,
     hasError,
@@ -47,9 +58,13 @@ const ProductsPage = () => {
   } = usePostFetch();
 
   const {
-    state: { products, user },
+    state: { products, user, productsCategories, filteredProducts },
     setState,
   } = useContext(AppContext);
+
+  const currentProducts = filteredProducts?.length
+    ? filteredProducts
+    : products;
 
   const {
     itemsInPage,
@@ -57,7 +72,18 @@ const ProductsPage = () => {
     currentData,
     nextPage,
     prevPage,
-  } = usePagination(products || [], 16);
+  } = usePagination(currentProducts || [], 16);
+
+  const onSelectFilter = (e: any) => {
+    const {
+      dataset: { itemtype },
+      textContent,
+    } = e.target;
+
+    setFilters((prevState) => ({ ...prevState, [itemtype]: textContent }));
+  };
+
+  const onClearFilters = () => setFilters({});
 
   const onRedeemProduct = (productId: string) => {
     const body = createFetchBody(productId);
@@ -65,18 +91,42 @@ const ProductsPage = () => {
   };
 
   useEffect(() => {
+    if (redeemError) {
+      console.error(redeemErrorMessage);
+      throw new Error(redeemErrorMessage);
+    }
+  }, [redeemError]);
+
+  useEffect(() => {
     if (!products) executeFetch();
 
     if (productsData) {
+      const productsCategories = getCategories(productsData);
+
       setState((prevState: any) => ({
         ...prevState,
         products: normalizedProductData(productsData, user),
+        productsCategories,
       }));
-    } else if (hasError || redeemError) {
-      console.error(errorMessage || redeemErrorMessage);
+    } else if (hasError) {
+      console.error(errorMessage);
       throw new Error(errorMessage);
     }
-  }, [productsData, hasError, redeemError]);
+  }, [productsData, hasError]);
+
+  useEffect(() => {
+    let filteredProducts = products ? [...products] : [];
+
+    if (filters.category) {
+      filteredProducts = sortByCategory(filteredProducts, filters.category);
+    }
+
+    if (filters.price) {
+      filteredProducts = sortByPrice(filteredProducts, filters.price);
+    }
+
+    setState((prevState) => ({ ...prevState, filteredProducts }));
+  }, [filters]);
 
   return (
     <>
@@ -86,7 +136,16 @@ const ProductsPage = () => {
         imgSrc={MainImage}
         srcSet={`${MainImage2x} 2x`}
       />
-      <FilterBar handleNext={nextPage} handlePrev={prevPage} />
+      <FilterBar
+        handleNext={nextPage}
+        handlePrev={prevPage}
+        maxItems={totalItems}
+        currentItems={itemsInPage}
+        filterItems={createFilters(productsCategories)}
+        handleSelect={onSelectFilter}
+        filters={filters}
+        handleClear={onClearFilters}
+      />
       <ProductsContainer
         products={currentData()}
         onHandleRedeem={onRedeemProduct}
