@@ -1,64 +1,57 @@
 //REACT
-import React, { useContext, useEffect, useState } from "react";
-
-//CONTEXT
-import { AppContext } from "../../context/AppContext";
+import React, { useEffect, useState } from "react";
 
 //COMPONENTS
 import PointPill from "../../components/PointPill";
-import SuccessModal from "../../components/SuccessModal";
-
-//ASSETS
-import animationData from "../../assets/lotties/treasure-box-coine.json";
-
-//HOOKS
-import { usePostFetch } from "../../hooks/useFetch";
 
 //LIBS
 //@ts-ignore
 import uuid from "react-uuid";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 
 //UITLS
 import { pickRandomElement } from "../../utils/randomPicker";
-import { createFetchBody, getPostHeaders } from "../../utils/fetchOptions";
 
 //CONSTANTS
 import { prizePoints } from "../../constants/earnPoints";
-import { API_URL } from "../../constants/api";
 
-//TYPESCRIPT
-import { User } from "../../types/user";
-import { Product } from "../../types/products";
+const PointPrizes: React.FC<{
+  prizePoints: number[];
+  selectedIndex: number | null;
+}> = ({ prizePoints, selectedIndex }) => (
+  <>
+    {prizePoints.map((number, index) => (
+      <PointPill
+        key={uuid()}
+        number={number}
+        selected={index === selectedIndex}
+      />
+    ))}
+  </>
+);
 
-const PointsPicker: React.FC = () => {
+const StartButton: React.FC<{
+  isDisabled: boolean;
+  handleClick: () => void;
+}> = ({ isDisabled, handleClick }) => (
+  <button
+    className={`rounded-full border px-6 py-2 mt-4 mx-auto ${
+      isDisabled
+        ? "bg-lightblue text-gray-100 cursor-not-allowed border-gray-100"
+        : "text-gray-800 hover:text-gray-600 border-gray-600"
+    }`}
+    onClick={handleClick}
+    disabled={isDisabled}
+  >
+    <span>{isDisabled ? "Good Luck!" : "Get Points!"}</span>
+  </button>
+);
+
+const PointsPicker: React.FC<{
+  onFinishPicking: (earnedCoins: number) => void;
+}> = ({ onFinishPicking }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [earnedCoins, setEarnedCoins] = useState<number | null>(null);
-  const { executeFetch, data, hasError, errorMessage } = usePostFetch();
-  const { setState } = useContext(AppContext);
-
-  const MySwal = withReactContent(Swal);
-
-  const updatePoints = () => {
-    const body = createFetchBody({ amount: earnedCoins });
-    executeFetch(`${API_URL}/user/points`, getPostHeaders(), body);
-  };
-
-  const showSuccessNotification = async (earnedCoins: number) => {
-    await MySwal.fire({
-      html: (
-        <SuccessModal earnedCoins={earnedCoins} animationData={animationData} />
-      ),
-      background: "transparent",
-      width: "100%",
-      height: "100%",
-      position: "top-start",
-      showConfirmButton: false,
-      onOpen: updatePoints,
-    });
-  };
 
   const pickRandomPrize = () => {
     setIsDisabled(true);
@@ -77,64 +70,16 @@ const PointsPicker: React.FC = () => {
 
   useEffect(() => {
     if (earnedCoins && !isDisabled) {
-      showSuccessNotification(earnedCoins);
+      onFinishPicking(earnedCoins);
     }
   }, [earnedCoins, isDisabled]);
 
-  useEffect(() => {
-    if (data?.message) {
-      setTimeout(() => {
-        MySwal.clickConfirm();
-        MySwal.fire(
-          "Coins added to your account",
-          `New Coins: ${data["New Points"]}`,
-          "success"
-        );
-      }, 3000);
-      setState((prevState: { user: User; products: Product[] }) => ({
-        ...prevState,
-        user: { ...prevState.user, points: data["New Points"] },
-      }));
-
-      setSelectedIndex(null);
-    }
-
-    if (hasError) {
-      console.error(errorMessage);
-      MySwal.fire("An error has occurred", "Please try again later", "error");
-    }
-  }, [data, hasError, errorMessage]);
-
   return (
-    <div className="mx-auto h-screen flex flex-col items-center">
-      <div className="mt-3 w-full py-16 flex flex-col items-center justify-center mb-0">
-        <h2 className="w-3/4 text-4xl md:text-5xl text-gray-700">
-          Test your luck!
-        </h2>
-        <h3 className="w-3/4 text-3xl md:text-4xl text-gray-600">
-          {`Click the button and get some points :)`}
-        </h3>
+    <div className="mx-auto h-auto flex flex-col items-center">
+      <div className="mx-auto w-full md:w-11/12 lg:w-1/3 flex justify-center items-center py-3 flex-wrap">
+        <PointPrizes prizePoints={prizePoints} selectedIndex={selectedIndex} />
       </div>
-      <div className="mx-auto w-11/12 md:w-1/2 lg:w-1/3 flex justify-center md:justify-between items-center py-6 flex-wrap">
-        {prizePoints.map((number, index) => (
-          <PointPill
-            key={uuid()}
-            number={number}
-            selected={index === selectedIndex}
-          />
-        ))}
-      </div>
-      <button
-        className={`rounded-full border px-6 py-2 mt-4 ${
-          isDisabled
-            ? "bg-lightblue text-gray-100 cursor-not-allowed border-gray-100"
-            : "text-gray-800 hover:text-gray-600 border-gray-600"
-        }`}
-        onClick={pickRandomPrize}
-        disabled={isDisabled}
-      >
-        <span>{isDisabled ? "Good Luck!" : "Get Points!"}</span>
-      </button>
+      <StartButton isDisabled={isDisabled} handleClick={pickRandomPrize} />
     </div>
   );
 };
