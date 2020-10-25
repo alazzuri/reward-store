@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
-import { HistoryItemProps } from "../types/history";
-import { Product } from "../types/products";
-import { User } from "../types/user";
 
-const useFetch: (
+export const useGetFetch: (
   url: string,
   headers?: Headers | {}
 ) => {
@@ -54,4 +51,59 @@ const useFetch: (
   return { data, isLoading, hasError, errorMessage, executeFetch };
 };
 
-export default useFetch;
+export const usePostFetch: () => {
+  data: any | null;
+  isLoading: boolean;
+  hasError: boolean;
+  errorMessage: string;
+  executeFetch: (url: string, headers: Headers, body: string) => void;
+} = () => {
+  const abortController = new AbortController();
+  const signal = abortController.signal;
+  const [data, setData] = useState<any | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<any>("");
+
+  const fetchData = async (url: string, headers: Headers, body: string) => {
+    setIsLoading(true);
+    setHasError(false);
+    setErrorMessage("");
+
+    try {
+      const response = await fetch(url, {
+        signal,
+        method: "POST",
+        mode: "cors",
+        headers,
+        body,
+      });
+      const jsonResponse = await response.json();
+      if (response.ok) {
+        setData(jsonResponse);
+      } else {
+        setHasError(true);
+        setErrorMessage(jsonResponse);
+      }
+    } catch (err) {
+      setHasError(true);
+      setErrorMessage(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const executeFetch = async (url: string, headers: Headers, body: string) =>
+    await fetchData(url, headers, body);
+
+  const abortPostFetch = () => abortController.abort();
+
+  return {
+    data,
+    isLoading,
+    hasError,
+    errorMessage,
+    executeFetch,
+    abortPostFetch,
+  };
+};

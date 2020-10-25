@@ -20,14 +20,14 @@ import { API_URL } from "../../constants/api";
 
 //HOOKS
 import { useDropdown } from "../../hooks/useDropdown";
-import useFetch from "../../hooks/useFetch";
+import { useGetFetch } from "../../hooks/useFetch";
 
 //UTILS
-import { getDefaultHeaders } from "../../utils/headers";
+import { getDefaultHeaders } from "../../utils/fetchOptions";
+import { shortenResults } from "../../utils/data";
 
 //TYPESCRIPT
 import { User } from "../../types/user";
-import { shortenResults } from "../../utils/api";
 
 const Header: React.FC = () => {
   const { open, toggle, ref } = useDropdown();
@@ -37,13 +37,7 @@ const Header: React.FC = () => {
     hasError,
     errorMessage,
     executeFetch,
-  }: {
-    data: User;
-    isLoading: boolean;
-    hasError: boolean;
-    errorMessage: string;
-    executeFetch: () => void;
-  } = useFetch(`${API_URL}/user/me`, getDefaultHeaders());
+  } = useGetFetch(`${API_URL}/user/me`, getDefaultHeaders());
 
   const {
     state: { user },
