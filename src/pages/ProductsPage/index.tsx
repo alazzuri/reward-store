@@ -37,12 +37,20 @@ import {
 //CONSTANTS
 import { API_URL } from "../../constants/api";
 import Swal from "sweetalert2";
+import { shortenResults } from "../../utils/data";
 
 const ProductsPage = () => {
   const [filters, setFilters] = useState<{
     category?: string;
     price?: string;
   }>({});
+
+  const {
+    data: userData,
+    hasError: userInfoError,
+    errorMessage: userInfoErrorMessage,
+    executeFetch: updateUserInformation,
+  } = useGetFetch(`${API_URL}/user/me`, getDefaultHeaders());
 
   const {
     data: productsData,
@@ -91,21 +99,7 @@ const ProductsPage = () => {
     redeemProduct(`${API_URL}/redeem`, getPostHeaders(), body);
   };
 
-  useEffect(() => {
-    if (redeemData) {
-      Swal.fire("Success!", `${redeemData.message}`, "success");
-    } else if (redeemError) {
-      console.error(redeemErrorMessage);
-      Swal.fire(
-        "Error",
-        `${
-          redeemErrorMessage || "An error has ocurred. Please try again later."
-        }`,
-        "error"
-      );
-    }
-  }, [redeemData, redeemError]);
-
+  //Get products from API if they dont exist in the state
   useEffect(() => {
     if (!products) executeFetch();
 
@@ -123,6 +117,7 @@ const ProductsPage = () => {
     }
   }, [productsData, hasError]);
 
+  //Updating data based on filters
   useEffect(() => {
     let filteredProducts = products ? [...products] : [];
 
@@ -136,6 +131,45 @@ const ProductsPage = () => {
 
     setState((prevState) => ({ ...prevState, filteredProducts }));
   }, [filters]);
+
+  // If a redemption occurs. Update user info and show success notification.
+  useEffect(() => {
+    if (redeemData) {
+      updateUserInformation();
+      Swal.fire("Success!", `${redeemData.message}`, "success");
+    } else if (redeemError) {
+      console.error(redeemErrorMessage);
+      Swal.fire(
+        "Error",
+        `${
+          redeemErrorMessage || "An error has ocurred. Please try again later."
+        }`,
+        "error"
+      );
+    }
+  }, [redeemData, redeemError]);
+
+  //To update user info in the state. It causes the header and history to be
+  //updated with the latest redemption
+
+  useEffect(() => {
+    if (userData) {
+      const sortedData = [...userData.redeemHistory].reverse();
+      const shortenedHistory = shortenResults(sortedData);
+      const normalizedUserData = {
+        ...userData,
+        redeemHistory: shortenedHistory,
+      };
+
+      setState((prevState: any) => ({
+        ...prevState,
+        user: normalizedUserData,
+      }));
+    } else if (userInfoError) {
+      console.error(userInfoErrorMessage);
+      throw new Error(userInfoErrorMessage);
+    }
+  }, [userData, userInfoError]);
 
   return (
     <>
