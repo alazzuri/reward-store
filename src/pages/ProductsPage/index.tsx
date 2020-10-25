@@ -99,7 +99,7 @@ const ProductsPage = () => {
     redeemProduct(`${API_URL}/redeem`, getPostHeaders(), body);
   };
 
-  //Get products from API if they dont exist in the state
+  //Get products from API if they dont exist in the state.
   useEffect(() => {
     if (!products) executeFetch();
 
