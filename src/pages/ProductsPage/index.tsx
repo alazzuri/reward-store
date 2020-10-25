@@ -17,11 +17,19 @@ import MainImage from "../../assets/images/header-x1.png";
 import MainImage2x from "../../assets/images/header-x2.png";
 
 //HOOKS
-import { useGetFetch } from "../../hooks/useFetch";
+import { useGetFetch, usePostFetch } from "../../hooks/useFetch";
+import usePagination from "../../hooks/usePagination";
 
 //UTILS
+import { normalizedProductData } from "../../utils/products";
+import {
+  createFetchBody,
+  getDefaultHeaders,
+  getPostHeaders,
+} from "../../utils/fetchOptions";
+
+//CONSTANTS
 import { API_URL } from "../../constants/api";
-import { getDefaultHeaders } from "../../utils/fetchOptions";
 
 const ProductsPage = () => {
   const {
@@ -32,9 +40,29 @@ const ProductsPage = () => {
   } = useGetFetch(`${API_URL}/products`, getDefaultHeaders());
 
   const {
-    state: { products },
+    executeFetch: redeemProduct,
+    hasError: redeemError,
+    errorMessage: redeemErrorMessage,
+    data,
+  } = usePostFetch();
+
+  const {
+    state: { products, user },
     setState,
   } = useContext(AppContext);
+
+  const {
+    maxPage,
+    currentPage,
+    currentData,
+    nextPage,
+    prevPage,
+  } = usePagination(products || [], 16);
+
+  const onRedeemProduct = (productId: string) => {
+    const body = createFetchBody(productId);
+    redeemProduct(`${API_URL}/redeem`, getPostHeaders(), body);
+  };
 
   useEffect(() => {
     if (!products) executeFetch();
@@ -42,13 +70,13 @@ const ProductsPage = () => {
     if (productsData) {
       setState((prevState: any) => ({
         ...prevState,
-        products: productsData,
+        products: normalizedProductData(productsData, user),
       }));
-    } else if (hasError) {
-      console.error(errorMessage);
+    } else if (hasError || redeemError) {
+      console.error(errorMessage || redeemErrorMessage);
       throw new Error(errorMessage);
     }
-  }, [productsData, hasError, products]);
+  }, [productsData, hasError, redeemError]);
 
   return (
     <>
@@ -58,9 +86,17 @@ const ProductsPage = () => {
         imgSrc={MainImage}
         srcSet={`${MainImage2x} 2x`}
       />
-      <FilterBar />
-      <ProductsContainer />
-      <Pagination />
+      <FilterBar handleNext={nextPage} handlePrev={prevPage} />
+      <ProductsContainer
+        products={currentData()}
+        onHandleRedeem={onRedeemProduct}
+      />
+      <Pagination
+        onClickNext={nextPage}
+        onClickPrev={prevPage}
+        maxItems={currentData().length * maxPage}
+        currentItems={currentData().length * currentPage}
+      />
       <Footer />
     </>
   );
