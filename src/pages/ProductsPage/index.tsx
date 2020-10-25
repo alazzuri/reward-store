@@ -36,6 +36,7 @@ import {
 
 //CONSTANTS
 import { API_URL } from "../../constants/api";
+import Swal from "sweetalert2";
 
 const ProductsPage = () => {
   const [filters, setFilters] = useState<{
@@ -54,7 +55,7 @@ const ProductsPage = () => {
     executeFetch: redeemProduct,
     hasError: redeemError,
     errorMessage: redeemErrorMessage,
-    data,
+    data: redeemData,
   } = usePostFetch();
 
   const {
@@ -86,16 +87,24 @@ const ProductsPage = () => {
   const onClearFilters = () => setFilters({});
 
   const onRedeemProduct = (productId: string) => {
-    const body = createFetchBody(productId);
+    const body = createFetchBody({ productId });
     redeemProduct(`${API_URL}/redeem`, getPostHeaders(), body);
   };
 
   useEffect(() => {
-    if (redeemError) {
+    if (redeemData) {
+      Swal.fire("Success!", `${redeemData.message}`, "success");
+    } else if (redeemError) {
       console.error(redeemErrorMessage);
-      throw new Error(redeemErrorMessage);
+      Swal.fire(
+        "Error",
+        `${
+          redeemErrorMessage || "An error has ocurred. Please try again later."
+        }`,
+        "error"
+      );
     }
-  }, [redeemError]);
+  }, [redeemData, redeemError]);
 
   useEffect(() => {
     if (!products) executeFetch();
