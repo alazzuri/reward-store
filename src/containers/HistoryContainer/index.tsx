@@ -14,10 +14,14 @@ import { HistoryItemProps } from "../../types/history";
 
 const TableHeading: React.FC = () => (
   <div className="md:w-3/4 mx-auto flex items-center justify-between rounded shadow-2xl bg-white h-auto m-2 border-gray-400 px-4 md:px-8 py-3 text-gray-700 font-bold my-3">
-    <p className="flex flex-col text-sm md:text-base pl-2 md:pl-4">Photo</p>
-    <p className="flex flex-col text-sm md:text-base pl-6 md:pl-8">Product</p>
-    <p className="text-sm md:text-base pl-10">Date</p>
-    <p className="text-red-600 flex items-center justify-center text-sm md:text-base px-12">
+    <p className="flex flex-col text-xs sm:text-base pl-6 w-1/4">Photo</p>
+    <p className="flex flex-col w-1/4 items-start text-xs sm:text-base">
+      Product
+    </p>
+    <p className="text-xs sm:text-base sm:pl-10 w-1/4 flex justify-center">
+      Date
+    </p>
+    <p className="text-red-600 flex items-center justify-end text-xs sm:text-base pr-8 w-1/4">
       Cost
     </p>
   </div>

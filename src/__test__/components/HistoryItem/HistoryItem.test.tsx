@@ -11,6 +11,9 @@ import HistoryItem from "../../../components/HistoryItem";
 //MOCKS
 import { mockedHistoryItem } from "../../mock/history";
 
+//UTILS
+import { formatNumber } from "../../../utils/data";
+
 describe("HistoryItem test", () => {
   test("HistoryItem renders without crashing", () => {
     render(
@@ -54,7 +57,7 @@ describe("HistoryItem test", () => {
 
     const name = getByText(mockedHistoryItem.name);
     const category = getByText(mockedHistoryItem.category);
-    const cost = getByText(mockedHistoryItem.cost.toLocaleString());
+    const cost = getByText(`${formatNumber(mockedHistoryItem.cost)}`);
     const date = getByText(mockedHistoryItem.date.toLocaleString());
 
     expect(category).toBeInTheDocument;

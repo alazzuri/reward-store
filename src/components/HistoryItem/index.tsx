@@ -6,6 +6,7 @@ import { ReactComponent as Coin } from "../../assets/icons/coin.svg";
 
 //TYPESCRIPT
 import { HistoryItemProps } from "../../types/history";
+import { formatNumber } from "../../utils/data";
 
 //UTILS
 import { formatDate } from "../../utils/date";
@@ -22,15 +23,17 @@ const HistoryItem: React.FC<HistoryItemProps> = ({
       <img
         src={img.url}
         alt={name}
-        className="rounded-full w-1/6 md:w-auto md:h-20"
+        className="rounded-full w-1/4 md:w-auto md:h-20"
       />
-      <p className="flex flex-col text-sm md:text-base">
+      <p className="flex w-1/4 flex-col items-start text-xs sm:text-base xl:pl-20">
         <span>{name}</span>
         <span className="text-gray-600">{category}</span>
       </p>
-      <p className="text-sm md:text-base">{formatDate(createDate)}</p>
-      <p className="text-red-600 flex items-center text-sm md:text-base">
-        <span className="mr-3">{cost.toLocaleString()}</span>
+      <p className="w-1/4 sm:text-base flex justify-end text-xs">
+        {formatDate(createDate)}
+      </p>
+      <p className="text-red-600 w-1/4 flex items-center justify-end sm:text-base text-xs">
+        <span className="mr-3">{formatNumber(cost)}</span>
         <Coin />
       </p>
     </div>

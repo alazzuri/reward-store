@@ -9,6 +9,9 @@ import { ReactComponent as BuyWhite } from "../../assets/icons/buy-white.svg";
 import { ReactComponent as BuyBlue } from "../../assets/icons/buy-blue.svg";
 import { ReactComponent as Coin } from "../../assets/icons/coin.svg";
 
+//UTILS
+import { formatNumber } from "../../utils/data";
+
 export const RedeemView: React.FC<{
   show: boolean;
   requiredPoints: number;
@@ -20,7 +23,7 @@ export const RedeemView: React.FC<{
     <figure className="w-full h-full absolute bg-lightblue top-0 left-0 flex justify-center items-center flex-col">
       <figcaption className="w-1/2 text-white text-3xl flex justify-center items-center h-auto">
         <span className="h-20 flex items-center">
-          {requiredPoints.toLocaleString()}
+          {formatNumber(requiredPoints)}
         </span>
         <Coin className="ml-2 h-full flex items-center mt-2" />
       </figcaption>
@@ -51,7 +54,7 @@ export const DefaultView: React.FC<{
         {remainingPoints && (
           <PillButton styles="w-auto bg-gray-900 bg-opacity-50 border-none">
             <span className="text-sm mr-2 text-white">
-              {`You need ${remainingPoints.toLocaleString()}`}
+              {`You need ${formatNumber(+remainingPoints)}`}
             </span>
             <Coin />
           </PillButton>

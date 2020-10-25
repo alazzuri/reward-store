@@ -6,6 +6,9 @@ import Lottie from "react-lottie";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
 
+//UTILS
+import { formatNumber } from "../../utils/data";
+
 const SuccessModal: React.FC<{ earnedCoins: number; animationData: any }> = ({
   earnedCoins,
   animationData,
@@ -25,7 +28,7 @@ const SuccessModal: React.FC<{ earnedCoins: number; animationData: any }> = ({
     <div className="pt-10">
       <p className="font-bold flex flex-col text-5xl text-gray-100 mb-8">
         <span className="mb-4">You got</span>
-        <span>{`${earnedCoins.toLocaleString()} coins`}</span>
+        <span>{`${formatNumber(earnedCoins)} coins`}</span>
       </p>
       <Confetti width={width} height={height} />
       <Lottie options={defaultOptions} height={400} width={400} />
