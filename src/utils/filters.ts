@@ -1,3 +1,4 @@
+import { BOTTOM_TO_TOP, TOP_TO_BOTTOM } from "../constants/filters";
 import { DropDownItem } from "../types/dropdownMenu";
 import { Product } from "../types/products";
 
@@ -10,13 +11,13 @@ const createPriceFilters: (priceRules: string[]) => DropDownItem[] = (
 ) => priceRule.map((rule) => ({ title: rule, type: "primary" }));
 
 export const createFilters: (
-  categories: string[],
+  categories?: string[],
   priceRules?: string[]
 ) => Array<{
   type: "category" | "price";
   defaultLabel: string;
   menuItems: DropDownItem[];
-}> = (categories, priceRules = ["Top to Bottom", "Bottom to Top"]) => [
+}> = (categories = [], priceRules = [TOP_TO_BOTTOM, BOTTOM_TO_TOP]) => [
   {
     type: "category",
     defaultLabel: "All categories",
@@ -29,14 +30,14 @@ export const createFilters: (
   },
 ];
 
-export const sortByPrice = (products: Product[], type: string) =>
+export const sortByPrice = (products: Product[] = [], type: string) =>
   products.sort((product1, product2) =>
-    type === "ascendant"
+    type === BOTTOM_TO_TOP
       ? product1.cost - product2.cost
       : product2.cost - product1.cost
   );
 
-export const sortByCategory = (products: Product[], category: string) =>
+export const sortByCategory = (products: Product[] = [], category: string) =>
   products.filter((product) => product.category === category);
 
 export const getCategories = (products: Product[] = []) =>

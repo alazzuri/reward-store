@@ -27,12 +27,15 @@ import {
   getDefaultHeaders,
   getPostHeaders,
 } from "../../utils/fetchOptions";
+import {
+  createFilters,
+  getCategories,
+  sortByCategory,
+  sortByPrice,
+} from "../../utils/filters";
 
 //CONSTANTS
 import { API_URL } from "../../constants/api";
-import { Product } from "../../types/products";
-import { log } from "console";
-import { createFilters, getCategories } from "../../utils/filters";
 
 const ProductsPage = () => {
   const {
@@ -50,9 +53,13 @@ const ProductsPage = () => {
   } = usePostFetch();
 
   const {
-    state: { products, user },
+    state: { products, user, productsCategories, filteredProducts },
     setState,
   } = useContext(AppContext);
+
+  const currentProducts = filteredProducts?.length
+    ? filteredProducts
+    : products;
 
   const {
     itemsInPage,
@@ -60,14 +67,13 @@ const ProductsPage = () => {
     currentData,
     nextPage,
     prevPage,
-  } = usePagination(products || [], 16);
+  } = usePagination(currentProducts || [], 16);
 
   const [filters, setFilters] = useState<{
     category?: string;
     price?: string;
   }>({});
 
-  const productsCategories = getCategories(products);
   const dropdownFilterItems = createFilters(productsCategories);
 
   const onSelectFilter = (e: any) => {
@@ -87,18 +93,42 @@ const ProductsPage = () => {
   };
 
   useEffect(() => {
+    if (redeemError) {
+      console.error(redeemErrorMessage);
+      throw new Error(redeemErrorMessage);
+    }
+  }, [redeemError]);
+
+  useEffect(() => {
     if (!products) executeFetch();
 
     if (productsData) {
+      const productsCategories = getCategories(productsData);
+
       setState((prevState: any) => ({
         ...prevState,
         products: normalizedProductData(productsData, user),
+        productsCategories,
       }));
-    } else if (hasError || redeemError) {
-      console.error(errorMessage || redeemErrorMessage);
+    } else if (hasError) {
+      console.error(errorMessage);
       throw new Error(errorMessage);
     }
-  }, [productsData, hasError, redeemError]);
+  }, [productsData, hasError]);
+
+  useEffect(() => {
+    let filteredProducts = products ? [...products] : [];
+
+    if (filters.category) {
+      filteredProducts = sortByCategory(filteredProducts, filters.category);
+    }
+
+    if (filters.price) {
+      filteredProducts = sortByPrice(filteredProducts, filters.price);
+    }
+
+    setState((prevState) => ({ ...prevState, filteredProducts }));
+  }, [filters]);
 
   return (
     <>
