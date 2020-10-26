@@ -38,6 +38,7 @@ const ProductCards: React.FC<{
           onHandleClick={() => handleClick(product._id)}
           imgSrc={product.img.url}
           remainingPoints={product.remainingPoints}
+          key={uuid()}
         />
       ))}
     </>

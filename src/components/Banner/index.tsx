@@ -11,7 +11,7 @@ const Banner: React.FC<{
       <img
         src={imgSrc}
         srcSet={srcSet}
-        alt="main-image"
+        alt="banner"
         className="w-full absolute z-0"
       />
       <h1 className="text-4xl md:text-6xl text-gray-100 font-bold z-50 mb-10 md:ml-40 ml-16">

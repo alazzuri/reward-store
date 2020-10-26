@@ -21,6 +21,7 @@ import { useGetFetch, usePostFetch } from "../../hooks/useFetch";
 import usePagination from "../../hooks/usePagination";
 
 //UTILS
+import Swal from "sweetalert2";
 import { normalizedProductData } from "../../utils/products";
 import {
   createFetchBody,
@@ -33,11 +34,10 @@ import {
   sortByCategory,
   sortByPrice,
 } from "../../utils/filters";
+import { shortenResults } from "../../utils/data";
 
 //CONSTANTS
 import { API_URL } from "../../constants/api";
-import Swal from "sweetalert2";
-import { shortenResults } from "../../utils/data";
 
 const ProductsPage = () => {
   const [filters, setFilters] = useState<{
