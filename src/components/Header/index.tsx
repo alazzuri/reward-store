@@ -1,5 +1,5 @@
 //REACT
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 //CONTEXT
 import { AppContext } from "../../context/AppContext";
@@ -7,7 +7,6 @@ import { AppContext } from "../../context/AppContext";
 //COMPONENTS
 import MainLogo from "../MainLogo";
 import DropDownButton from "../DropdownButton";
-import Spinner from "../Spinner";
 
 //ASSETS
 import Logo from "../../assets/logos/aerolab-logo.svg";
@@ -16,52 +15,19 @@ import { ReactComponent as Coin } from "../../assets/icons/coin.svg";
 
 //CONSTANTS
 import { dropDownItems } from "../../constants/dropdown";
-import { API_URL } from "../../constants/api";
 
 //HOOKS
 import { useDropdown } from "../../hooks/useDropdown";
-import { useGetFetch } from "../../hooks/useFetch";
 
 //UTILS
-import { getDefaultHeaders } from "../../utils/fetchOptions";
-import { formatNumber, shortenResults } from "../../utils/data";
+import { formatNumber } from "../../utils/data";
 
 const Header: React.FC = () => {
   const { open, toggle, ref } = useDropdown();
-  const {
-    data: userData,
-    isLoading,
-    hasError,
-    errorMessage,
-    executeFetch,
-  } = useGetFetch(`${API_URL}/user/me`, getDefaultHeaders());
 
   const {
     state: { user },
-    setState,
   } = useContext(AppContext);
-
-  useEffect(() => {
-    if (!user) executeFetch();
-
-    if (userData) {
-      const sortedData = [...userData.redeemHistory].reverse();
-      const shortenedHistory = shortenResults(sortedData);
-
-      const normalizedUserData = {
-        ...userData,
-        redeemHistory: shortenedHistory,
-      };
-
-      setState((prevState: any) => ({
-        ...prevState,
-        user: normalizedUserData,
-      }));
-    } else if (hasError) {
-      console.error(errorMessage);
-      throw new Error(errorMessage);
-    }
-  }, [userData, hasError]);
 
   return (
     <header className="relative bg-white w-full p-6">
@@ -84,7 +50,7 @@ const Header: React.FC = () => {
                 ref={ref}
               >
                 <Coin />
-                <span>{formatNumber(user?.points)}</span>
+                {user && <span>{formatNumber(user?.points)}</span>}
                 <ChevronDown />
               </DropDownButton>
             </div>
