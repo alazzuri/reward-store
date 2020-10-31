@@ -34,7 +34,7 @@ describe("Pagination test", () => {
 
     const paginationText = getByText(/16 of 32/i);
 
-    expect(paginationText).toBeInTheDocument;
+    expect(paginationText).toBeInTheDocument();
   });
 
   test("Pagination renders childrens", () => {
@@ -67,8 +67,8 @@ describe("Pagination test", () => {
     const chevronLeft = getByText(/arrow-left.svg/i);
     const chevronRight = getByText(/arrow-right.svg/i);
 
-    expect(chevronLeft).toBeInTheDocument;
-    expect(chevronRight).toBeInTheDocument;
+    expect(chevronLeft).toBeInTheDocument();
+    expect(chevronRight).toBeInTheDocument();
 
     userEvent.click(chevronLeft);
     userEvent.click(chevronRight);
