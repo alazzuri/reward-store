@@ -14,6 +14,10 @@ import { useDropdown } from "../../hooks/useDropdown";
 //TYPESCRIPT
 import { DropDownItem } from "../../types/dropdownMenu";
 
+//LIBS
+//@ts-ignore
+import uuid from "react-uuid";
+
 export const FilterButton: React.FC<{
   menuItems: DropDownItem[];
   handleClick: (e: any) => void;
@@ -76,6 +80,7 @@ const renderFilterButtons = (
         buttonStyles={buttonStyles}
         labelStyles={`p-2 filter-button ${labelColor}`}
         dropdownColor={dropdownColor}
+        key={uuid()}
       />
     );
   });

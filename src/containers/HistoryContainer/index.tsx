@@ -50,6 +50,7 @@ const HistoryCards: React.FC<{ historyItems: HistoryItemProps[] }> = ({
         cost={product.cost}
         img={product.img}
         createDate={product.createDate}
+        key={uuid()}
       />
     ))}
   </>

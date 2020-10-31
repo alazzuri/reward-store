@@ -23,10 +23,12 @@ export class ErrorBoundary extends Component {
   static getDerivedStateFromError(error: any) {
     return { hasError: true, error };
   }
+
   componentDidCatch(error: any, errorInfo: any) {
     console.error({ error, errorInfo });
     this.setState({ errorInfo });
   }
+
   render() {
     const { hasError } = this.state;
 

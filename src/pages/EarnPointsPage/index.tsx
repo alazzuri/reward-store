@@ -23,9 +23,11 @@ import withReactContent from "sweetalert2-react-content";
 
 //UITLS
 import { createFetchBody, getPostHeaders } from "../../utils/fetchOptions";
+import { formatNumber } from "../../utils/data";
 
 //CONSTANTS
 import { API_URL } from "../../constants/api";
+import { prizePoints } from "../../constants/earnPoints";
 
 //TYPESCRIPT
 import { User } from "../../types/user";
@@ -39,6 +41,10 @@ const EarnPointsPage: React.FC = () => {
 
   const updatePoints = (earnedCoins: number) => {
     const body = createFetchBody({ amount: earnedCoins });
+
+    if (!prizePoints.includes(earnedCoins))
+      throw new Error("Amount not redeemable");
+
     executeFetch(`${API_URL}/user/points`, getPostHeaders(), body);
   };
 
@@ -49,7 +55,7 @@ const EarnPointsPage: React.FC = () => {
 
         MySwal.fire(
           "Coins added to your account",
-          `New Coins: ${data["New Points"]}`,
+          `New Coins: ${formatNumber(+data["New Points"])}`,
           "success"
         );
       }, 3000);

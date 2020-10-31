@@ -28,14 +28,19 @@ export const useGetFetch: (
         const jsonResponse = await response.json();
         if (response.ok) {
           setData(jsonResponse);
+          setIsLoading(false);
+          setShouldFetch(false);
         } else {
           setHasError(true);
           setErrorMessage(jsonResponse);
+          setIsLoading(false);
+          setShouldFetch(false);
         }
       } catch (err) {
+        if (err.name === "AbortError") return;
+
         setHasError(true);
         setErrorMessage(err.message);
-      } finally {
         setIsLoading(false);
         setShouldFetch(false);
       }
