@@ -35,6 +35,7 @@ describe("Banner Test", () => {
 
     expect(image).toHaveAttribute("src", MainImage);
     expect(image).toHaveAttribute("srcSet", `${MainImage2x} 2x`);
+    expect(image).toHaveAttribute("alt", "banner");
   });
 
   test("Banner has title", () => {
