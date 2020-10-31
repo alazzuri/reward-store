@@ -39,7 +39,10 @@ const Header: React.FC = () => {
                 <MainLogo logoSrc={Logo} />
               </div>
             </div>
-            <div className="flex md:ml-10 md:pr-4 w-3/4 justify-end items-center">
+            <div
+              className="flex md:ml-10 md:pr-4 w-3/4 justify-end items-center"
+              data-testId="user-info"
+            >
               <p className="font-medium text-gray-900 flex mr-8">
                 {user?.name}
               </p>
