@@ -16,10 +16,12 @@ describe("Footer test", () => {
   test("Footer has text", () => {
     const { getByText } = render(<Footer />);
 
-    const footerText = getByText(/Codeado con/i);
+    const footerIntro = getByText(/Codeado con/i);
+    const footerName = getByText(/por Alexis Lazzuri/i);
     const githubText = getByText(/github.com\/alazzuri/i);
 
-    expect(footerText).toBeInTheDocument;
+    expect(footerIntro).toBeInTheDocument;
+    expect(footerName).toBeInTheDocument;
     expect(githubText).toBeInTheDocument;
   });
 });
