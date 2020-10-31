@@ -21,5 +21,6 @@ describe("MainLogo Test", () => {
     const logo = getByRole("img");
 
     expect(logo).toHaveAttribute("src", Logo);
+    expect(logo).toHaveAttribute("alt", "Logo");
   });
 });
