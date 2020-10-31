@@ -90,17 +90,13 @@ const Card: React.FC<{
 }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
 
-  const toggleView = () => {
-    setIsHover((prevState) => !prevState);
-  };
-
   return (
     <div
       className={`max-w-sm rounded shadow-2xl bg-white h-auto m-2 border-gray-400 px-6 relative cursor-pointer transition-all duration-200 product-card ${
         isHover && "transform -translate-y-2 box-shadow-hover"
       }`}
-      onMouseEnter={toggleView}
-      onMouseLeave={toggleView}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
     >
       <DefaultView
         name={name}
