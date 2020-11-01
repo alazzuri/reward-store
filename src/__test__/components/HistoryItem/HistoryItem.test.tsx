@@ -21,8 +21,8 @@ describe("HistoryItem test", () => {
         name={mockedHistoryItem.name}
         category={mockedHistoryItem.category}
         cost={mockedHistoryItem.cost}
-        imgSrc={mockedHistoryItem.imgSrc}
-        date={mockedHistoryItem.date}
+        img={mockedHistoryItem.img}
+        createDate={mockedHistoryItem.date}
       />
     );
   });
@@ -33,15 +33,15 @@ describe("HistoryItem test", () => {
         name={mockedHistoryItem.name}
         category={mockedHistoryItem.category}
         cost={mockedHistoryItem.cost}
-        imgSrc={mockedHistoryItem.imgSrc}
-        date={mockedHistoryItem.date}
+        img={mockedHistoryItem.img}
+        createDate={mockedHistoryItem.date}
       />
     );
 
     const img = getByRole("img");
     expect(img).toBeInTheDocument;
-    expect(img).toHaveAttribute("src", mockedHistoryItem.imgSrc);
-    expect(img).toHaveAttribute("alt", `product-${mockedHistoryItem.name}`);
+    expect(img).toHaveAttribute("src", mockedHistoryItem.img.url);
+    expect(img).toHaveAttribute("alt", mockedHistoryItem.name);
   });
 
   test("HistoryItem has product info", () => {
@@ -50,8 +50,8 @@ describe("HistoryItem test", () => {
         name={mockedHistoryItem.name}
         category={mockedHistoryItem.category}
         cost={mockedHistoryItem.cost}
-        imgSrc={mockedHistoryItem.imgSrc}
-        date={mockedHistoryItem.date}
+        img={mockedHistoryItem.img}
+        createDate={mockedHistoryItem.date}
       />
     );
 
@@ -72,8 +72,8 @@ describe("HistoryItem test", () => {
         name={mockedHistoryItem.name}
         category={mockedHistoryItem.category}
         cost={mockedHistoryItem.cost}
-        imgSrc={mockedHistoryItem.imgSrc}
-        date={mockedHistoryItem.date}
+        img={mockedHistoryItem.img}
+        createDate={mockedHistoryItem.date}
       />
     );
 

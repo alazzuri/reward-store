@@ -17,8 +17,8 @@ describe("Product Card test", () => {
       <Card
         name={mockedProduct.name}
         category={mockedProduct.category}
-        requiredPoints={mockedProduct.cost}
         imgSrc={mockedProduct.img.url}
+        requiredPoints={mockedProduct.cost}
         onHandleClick={() => console.log("Clicked")}
       />
     );
@@ -68,8 +68,10 @@ describe("Product Card test", () => {
     );
 
     const notRedeemableButton = getByText("You need 2,000");
+    const coin = getByText(/coin.svg/i);
 
     expect(notRedeemableButton).toBeInTheDocument;
+    expect(coin).toBeInTheDocument;
   });
 
   test("Default view has image", () => {
@@ -117,7 +119,7 @@ describe("Product Card test", () => {
     expect(container).toHaveAttribute("class", "block");
   });
 
-  test("Redeem view hidden if hover if false", () => {
+  test("Redeem view hidden if show is false", () => {
     const { getByTestId } = render(
       <RedeemView
         show={false}
@@ -147,7 +149,7 @@ describe("Product Card test", () => {
     expect(coin).toBeInTheDocument;
   });
 
-  test("Default View has points info", () => {
+  test("Redeem View has points info", () => {
     const { getByText } = render(
       <RedeemView
         show={true}
@@ -161,7 +163,7 @@ describe("Product Card test", () => {
     expect(points).toBeInTheDocument;
   });
 
-  test("Default View has redeem button", () => {
+  test("Redeem View has redeem button", () => {
     console.log = jest.fn();
 
     const { getByRole } = render(
@@ -178,5 +180,22 @@ describe("Product Card test", () => {
     expect(redeemButton).toBeInTheDocument;
     expect(redeemButton).toHaveTextContent("Redeem Now");
     expect(console.log).toHaveBeenCalledWith("Clicked");
+  });
+
+  test("Redeem View is hidden if the user has not enough points", () => {
+    const { queryByTestId } = render(
+      <Card
+        name={mockedProduct.name}
+        category={mockedProduct.category}
+        imgSrc={mockedProduct.img.url}
+        requiredPoints={mockedProduct.cost}
+        remainingPoints={200}
+        onHandleClick={() => console.log("Clicked")}
+      />
+    );
+
+    const container = queryByTestId(/container/i);
+
+    expect(container).not.toBeInTheDocument();
   });
 });

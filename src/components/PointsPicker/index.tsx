@@ -14,7 +14,7 @@ import { pickRandomElement } from "../../utils/randomPicker";
 //CONSTANTS
 import { prizePoints } from "../../constants/earnPoints";
 
-const PointPrizes: React.FC<{
+export const PointPrizes: React.FC<{
   prizePoints: number[];
   selectedIndex: number | null;
 }> = ({ prizePoints, selectedIndex }) => (
@@ -29,7 +29,7 @@ const PointPrizes: React.FC<{
   </>
 );
 
-const StartButton: React.FC<{
+export const StartButton: React.FC<{
   isDisabled: boolean;
   handleClick: () => void;
 }> = ({ isDisabled, handleClick }) => (

@@ -18,15 +18,20 @@ describe("ErrorBoundary test", () => {
     );
   });
 
-  test("ErrorBoundary has text", () => {
-    const { getByText } = render(
+  test("ErrorBoundary has text and image", () => {
+    const { getByText, getByRole } = render(
       <ErrorBoundary>
         <CrashingComponent />
       </ErrorBoundary>
     );
 
-    const errortext = getByText(/Something went wrong/i);
+    const errorTitle = getByText(/Something went wrong/i);
+    const errorDescription = getByText(/Please try reloading the app/i);
+    const errorImage = getByRole("img");
 
-    expect(errortext).toBeInTheDocument;
+    expect(errorTitle).toBeInTheDocument;
+    expect(errorDescription).toBeInTheDocument;
+    expect(errorImage).toHaveAttribute("src", "Error.png");
+    expect(errorImage).toHaveAttribute("alt", "error-page");
   });
 });

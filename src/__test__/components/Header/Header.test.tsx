@@ -7,78 +7,32 @@ import "@testing-library/jest-dom/extend-expect";
 
 //COMPONENTS
 import Header from "../../../components/Header";
-import MainLogo from "../../../components/MainLogo";
-import DropDownButton, {
-  DropDownMenu,
-} from "../../../components/DropdownButton";
-
-//ASSETS
-import Logo from "../../../assets/logos/aerolab-logo.svg";
-import MainImage from "../../../assets/images/header-x1.png";
-import MainImage2x from "../../../assets/images/header-x2.png";
-import { ReactComponent as ChevronDown } from "../../../assets/icons/chevron-down.svg";
-import { ReactComponent as Coin } from "../../../assets/icons/coin.svg";
-
-//CONSTANTS
-import { dropDownItems } from "../../../constants/dropdown";
+import userEvent from "@testing-library/user-event";
 
 describe("Header Test", () => {
   test("Header render without crashing", () => {
     render(<Header />);
   });
 
-  test("Header has logo", () => {
-    const { getByRole } = render(<MainLogo logoSrc={Logo} />);
-    const logo = getByRole("img");
+  test("Header has user info", () => {
+    const { getByTestId } = render(<Header />);
+    const userInfo = getByTestId("user-info");
 
-    expect(logo).toHaveAttribute("src", Logo);
+    expect(userInfo).toBeInTheDocument;
   });
 
-  test("Header has username", () => {
-    const { getByText } = render(<Header />);
-    const user = getByText(/Julia Coi/i);
+  test("Dropdown menu show items", () => {
+    const { getByText, getByRole } = render(<Header />);
+    const dropdownButton = getByRole("button");
 
-    expect(user).toBeInTheDocument;
-  });
+    userEvent.click(dropdownButton);
 
-  test("Dropdown button renders without crashing", () => {
-    render(
-      <DropDownButton menuItems={dropDownItems} open={false} toggle={jest.fn}>
-        <span>5000</span>
-        <ChevronDown />
-      </DropDownButton>
-    );
-  });
-
-  test("Dropdown button contains info", () => {
-    const { getByText } = render(
-      <DropDownButton menuItems={dropDownItems} open={false} toggle={jest.fn}>
-        <Coin />
-        <span>5000</span>
-        <ChevronDown />
-      </DropDownButton>
-    );
-
-    const points = getByText(/5000/i);
-    const coin = getByText(/coin.svg/i);
-    const chevronDown = getByText(/chevron-down.svg/i);
-
-    expect(points).toBeInTheDocument;
-    expect(coin).toBeInTheDocument;
-    expect(chevronDown).toBeInTheDocument;
-  });
-
-  test("Dropdown menu renders without crashing", () => {
-    render(<DropDownMenu menuItems={dropDownItems} />);
-  });
-
-  test("Dropdown menu contains info", () => {
-    const { getByText } = render(<DropDownMenu menuItems={dropDownItems} />);
-
+    const home = getByText(/Home/i);
     const getPoints = getByText(/Get more points/i);
-    const signOut = getByText(/Sign out/i);
+    const history = getByText(/History/i);
 
+    expect(home).toBeInTheDocument;
     expect(getPoints).toBeInTheDocument;
-    expect(signOut).toBeInTheDocument;
+    expect(history).toBeInTheDocument;
   });
 });
