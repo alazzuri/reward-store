@@ -34,14 +34,7 @@ const Header: React.FC = () => {
       <div className="max-w-screen-xl mx-auto">
         <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
           <nav className="relative flex items-center justify-between sm:h-10">
-            <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
-              <div className="flex items-center justify-between w-full md:w-auto">
-                <MainLogo logoSrc={Logo} />
-                <span className="text-2xl text-gray-900 ml-4">
-                  Rewards Store
-                </span>
-              </div>
-            </div>
+            <MainLogo logoSrc={Logo} title="Rewards Store" />
             <div
               className="flex md:ml-10 md:pr-4 w-3/4 justify-end items-center"
               data-testId="user-info"

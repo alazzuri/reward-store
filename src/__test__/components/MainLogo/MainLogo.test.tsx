@@ -23,4 +23,13 @@ describe("MainLogo Test", () => {
     expect(logo).toHaveAttribute("src", Logo);
     expect(logo).toHaveAttribute("alt", "Logo");
   });
+
+  test("MainLogo has title", () => {
+    const { getByText } = render(
+      <MainLogo logoSrc={Logo} title="Rewards Store" />
+    );
+    const title = getByText(/Rewards Store/i);
+
+    expect(title).toBeInTheDocument();
+  });
 });
