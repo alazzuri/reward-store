@@ -12,7 +12,7 @@ import { Product } from "../../types/products";
 //@ts-ignore
 import uuid from "react-uuid";
 
-const LoadingSkeletons: React.FC<{ amount: number }> = ({ amount }) => {
+export const LoadingSkeletons: React.FC<{ amount: number }> = ({ amount }) => {
   const itemsToRender = Array.from(new Array(amount));
 
   return (
@@ -24,7 +24,7 @@ const LoadingSkeletons: React.FC<{ amount: number }> = ({ amount }) => {
   );
 };
 
-const ProductCards: React.FC<{
+export const ProductCards: React.FC<{
   products: Product[];
   handleClick: (productId: string) => void;
 }> = ({ products, handleClick }) => {

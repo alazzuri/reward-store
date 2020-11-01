@@ -20,6 +20,7 @@ export const mockedCatalog = [
       hdUrl:
         "https://coding-challenge-api.aerolab.co/images/Alienware13-x2.png",
     },
+    remainingPoints: false,
   },
   {
     _id: "5a033eeb364bf301523e9b92",
@@ -31,5 +32,6 @@ export const mockedCatalog = [
       hdUrl:
         "https://coding-challenge-api.aerolab.co/images/Alienware13-x2.png",
     },
+    remainingPoints: 300,
   },
 ];
