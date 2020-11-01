@@ -9,7 +9,7 @@ import "@testing-library/jest-dom/extend-expect";
 import MainLogo from "../../../components/MainLogo";
 
 //ASSETS
-import Logo from "../../../assets/logos/aerolab-logo.svg";
+import Logo from "../../../assets/logos/main-logo.svg";
 
 describe("MainLogo Test", () => {
   test("MainLogo renders without crashing", () => {

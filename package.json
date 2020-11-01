@@ -77,11 +77,6 @@
       "last 1 safari version"
     ]
   },
-  "jest": {
-    "setupFiles": [
-      "jest-canvas-mock"
-    ]
-  },
   "devDependencies": {
     "@types/numeral": "0.0.28",
     "eslint-config-prettier": "^6.12.0",
