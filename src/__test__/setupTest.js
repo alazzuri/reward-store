@@ -3,6 +3,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { render as rtlRender, cleanup } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
+import "jest-canvas-mock";
 export { default as userEvent } from "@testing-library/user-event";
 afterEach(cleanup);
 
