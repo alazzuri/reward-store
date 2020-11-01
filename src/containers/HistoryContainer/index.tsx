@@ -12,7 +12,7 @@ import uuid from "react-uuid";
 //TYPESCRIPT
 import { HistoryItemProps } from "../../types/history";
 
-const TableHeading: React.FC = () => (
+export const TableHeading: React.FC = () => (
   <div className="md:w-3/4 mx-auto flex items-center justify-between rounded shadow-2xl bg-white h-auto m-2 border-gray-400 px-4 md:px-8 py-3 text-gray-700 font-bold my-3">
     <p className="flex flex-col text-xs sm:text-base pl-6 w-1/4">Photo</p>
     <p className="flex flex-col w-1/4 items-start text-xs sm:text-base">
@@ -27,7 +27,7 @@ const TableHeading: React.FC = () => (
   </div>
 );
 
-const LoadingSkeletons: React.FC<{ amount: number }> = ({ amount }) => {
+export const LoadingSkeletons: React.FC<{ amount: number }> = ({ amount }) => {
   const itemsToRender = Array.from(new Array(amount));
 
   return (
@@ -39,7 +39,7 @@ const LoadingSkeletons: React.FC<{ amount: number }> = ({ amount }) => {
   );
 };
 
-const HistoryCards: React.FC<{ historyItems: HistoryItemProps[] }> = ({
+export const HistoryCards: React.FC<{ historyItems: HistoryItemProps[] }> = ({
   historyItems,
 }) => (
   <>
