@@ -8,7 +8,7 @@ import "@testing-library/jest-dom/extend-expect";
 //PAGES
 import EarnPointsPage from "../../../pages/EarnPointsPage";
 
-describe("EarnPointsPaage test", () => {
+describe("EarnPointsPage test", () => {
   test("EarnPointsPage renders without crashing", () => {
     render(<EarnPointsPage />);
   });
