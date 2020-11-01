@@ -9,7 +9,7 @@ import MainLogo from "../MainLogo";
 import DropDownButton from "../DropdownButton";
 
 //ASSETS
-import Logo from "../../assets/logos/aerolab-logo.svg";
+import Logo from "../../assets/logos/main-logo.svg";
 import { ReactComponent as ChevronDown } from "../../assets/icons/chevron-down.svg";
 import { ReactComponent as Coin } from "../../assets/icons/coin.svg";
 
@@ -37,6 +37,9 @@ const Header: React.FC = () => {
             <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
               <div className="flex items-center justify-between w-full md:w-auto">
                 <MainLogo logoSrc={Logo} />
+                <span className="text-2xl text-gray-900 ml-4">
+                  Rewards Store
+                </span>
               </div>
             </div>
             <div
@@ -53,7 +56,7 @@ const Header: React.FC = () => {
                 ref={ref}
               >
                 <Coin />
-                {user && <span>{formatNumber(user?.points)}</span>}
+                <span>{user ? formatNumber(user.points) : ""}</span>
                 <ChevronDown />
               </DropDownButton>
             </div>
