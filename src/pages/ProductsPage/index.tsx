@@ -4,6 +4,10 @@ import React, { useContext, useEffect, useState } from "react";
 //CONTEXT
 import { AppContext } from "../../context/AppContext";
 
+//LIBS
+import BlockUi from "react-block-ui";
+import "react-block-ui/style.css";
+
 //COMPONENTS
 import Banner from "../../components/Banner";
 import FilterBar from "../../components/FilterBar";
@@ -64,6 +68,7 @@ const ProductsPage = () => {
     hasError: redeemError,
     errorMessage: redeemErrorMessage,
     data: redeemData,
+    isLoading: isRedeeming,
   } = usePostFetch();
 
   const {
@@ -173,33 +178,40 @@ const ProductsPage = () => {
 
   return (
     <>
-      <Header />
-      <Banner
-        title="Electronics"
-        imgSrc={MainImage}
-        srcSet={`${MainImage2x} 2x`}
-      />
-      <FilterBar
-        handleNext={nextPage}
-        handlePrev={prevPage}
-        maxItems={totalItems}
-        currentItems={itemsInPage}
-        filterItems={createFilters(productsCategories)}
-        handleSelect={onSelectFilter}
-        filters={filters}
-        handleClear={onClearFilters}
-      />
-      <ProductsContainer
-        products={currentData()}
-        onHandleRedeem={onRedeemProduct}
-      />
-      <Pagination
-        onClickNext={nextPage}
-        onClickPrev={prevPage}
-        maxItems={totalItems}
-        currentItems={itemsInPage}
-      />
-      <Footer />
+      <BlockUi
+        tag="div"
+        blocking={isRedeeming}
+        message="Getting Your Product..."
+        keepInView
+      >
+        <Header />
+        <Banner
+          title="Electronics"
+          imgSrc={MainImage}
+          srcSet={`${MainImage2x} 2x`}
+        />
+        <FilterBar
+          handleNext={nextPage}
+          handlePrev={prevPage}
+          maxItems={totalItems}
+          currentItems={itemsInPage}
+          filterItems={createFilters(productsCategories)}
+          handleSelect={onSelectFilter}
+          filters={filters}
+          handleClear={onClearFilters}
+        />
+        <ProductsContainer
+          products={currentData()}
+          onHandleRedeem={onRedeemProduct}
+        />
+        <Pagination
+          onClickNext={nextPage}
+          onClickPrev={prevPage}
+          maxItems={totalItems}
+          currentItems={itemsInPage}
+        />
+        <Footer />
+      </BlockUi>
     </>
   );
 };
