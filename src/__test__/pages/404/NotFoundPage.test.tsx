@@ -17,7 +17,7 @@ describe("NotFoundPage test", () => {
     render(<NotFoundPage />);
   });
 
-  test("NotFoundPage has content", async () => {
+  test("NotFoundPage has content. Back button redirects to home", async () => {
     const { getByRole, getByText } = render(<NotFoundPage />);
 
     const pageTitle = getByText(/Not Found/i);
