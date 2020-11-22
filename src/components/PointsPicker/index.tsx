@@ -76,7 +76,7 @@ const PointsPicker: React.FC<{
 
   return (
     <div className="mx-auto h-auto flex flex-col items-center">
-      <div className="mx-auto w-full md:w-11/12 lg:w-1/3 flex justify-center items-center py-3 flex-wrap">
+      <div className="mx-auto w-full md:w-3/4 xl:w-1/3 flex justify-center items-center py-3 flex-wrap">
         <PointPrizes prizePoints={prizePoints} selectedIndex={selectedIndex} />
       </div>
       <StartButton isDisabled={isDisabled} handleClick={pickRandomPrize} />
