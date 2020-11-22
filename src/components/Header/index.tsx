@@ -36,7 +36,7 @@ const Header: React.FC = () => {
           <nav className="relative flex items-center justify-between sm:h-10">
             <MainLogo logoSrc={Logo} title="Rewards Store" />
             <div
-              className="flex md:ml-10 md:pr-4 w-3/4 justify-end items-center"
+              className="flex md:ml-10 md:pr-4 w-11/12 md:w-3/4 justify-end items-center"
               data-testId="user-info"
             >
               <p className="font-medium text-gray-900 flex mr-8">

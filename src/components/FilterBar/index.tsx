@@ -111,7 +111,7 @@ const FilterBar: React.FC<{
       maxItems={maxItems}
       currentItems={currentItems}
     >
-      <div className="w-full lg:w-3/4 flex flex-col lg:flex-row lg:items-center lg:border-l-2 justify-start px-6">
+      <div className="w-full xl:w-3/4 flex flex-col lg:flex-row lg:items-center lg:border-l-2 justify-start px-6 md:justify-between">
         <p className=" w-100 text-center mb-4 lg:mb-0 lg:w-2/12 text-gray-600">
           Sort By
         </p>
@@ -119,7 +119,7 @@ const FilterBar: React.FC<{
           {renderFilterButtons(filterItems, handleSelect, filters)}
         </div>
         <button
-          className="text-gray-600 hover:text-gray-700 lg:ml-6 mb-3 md:mb-0"
+          className="text-gray-600 hover:text-gray-700 lg:ml-6 mb-3 md:mb-2"
           onClick={handleClear}
         >
           Clear Filters

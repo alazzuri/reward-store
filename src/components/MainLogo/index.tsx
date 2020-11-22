@@ -12,16 +12,15 @@ const MainLogo: React.FC<{
 }> = ({ logoSrc, title = "", styles = "", link = "/" }) => {
   return (
     <>
-      <Link
-        to={link}
-        className="flex items-center justify-between w-full md:w-auto"
-      >
+      <Link to={link} className="flex items-center justify-start w-1/4 md:w-64">
         <img
           className={`h-8 w-auto sm:h-10 ${styles}`}
           src={logoSrc}
           alt="Logo"
         />
-        <span className="text-2xl text-gray-900 ml-4">{title}</span>
+        <span className="text-2xl text-gray-900 ml-4 hidden md:block w-auto">
+          {title}
+        </span>
       </Link>
     </>
   );
