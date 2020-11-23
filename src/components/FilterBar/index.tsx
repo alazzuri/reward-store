@@ -111,11 +111,11 @@ const FilterBar: React.FC<{
       maxItems={maxItems}
       currentItems={currentItems}
     >
-      <div className="w-full xl:w-3/4 flex flex-col lg:flex-row lg:items-center lg:border-l-2 justify-start px-6 md:justify-between">
+      <div className="w-full xl:w-3/4 flex flex-col items-center lg:flex-row lg:items-center lg:border-l-2 justify-start px-6 md:justify-between">
         <p className=" w-100 text-center mb-4 lg:mb-0 lg:w-2/12 text-gray-600">
           Sort By
         </p>
-        <div className="w-full mb-4 lg:mb-0 lg:w-3/5 flex justify-around lg:justify-between">
+        <div className="w-11/12 mb-4 lg:mb-0 lg:w-3/5 flex justify-around px-6 lg:justify-between">
           {renderFilterButtons(filterItems, handleSelect, filters)}
         </div>
         <button

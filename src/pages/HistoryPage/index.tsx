@@ -26,7 +26,7 @@ const HistoryPage = () => {
     <>
       <Header />
       <div className="mx-auto w-11/12">
-        <div className="mt-6 w-full py-16 flex flex-col items-center justify-center mb-6">
+        <div className="mt-6 w-full py-8 md:py-16 flex flex-col items-center justify-center md:mb-6">
           <h2 className="w-3/4 text-4xl md:text-5xl text-gray-700">
             Hello There!
           </h2>
