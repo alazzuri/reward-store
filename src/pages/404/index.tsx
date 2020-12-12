@@ -11,7 +11,7 @@ const NotFoundPage = () => {
       <p className="text-4xl mb-4 text-gray-800">Not Found</p>
       <img src={NotFoundImage} alt="not-found" className="w-1/4" />
       <Link
-        to="/"
+        to="/reward-store"
         className="rounded-full border p-2 mt-4 border-gray-600 text-gray-800 hover:text-gray-600"
       >
         Back to Home

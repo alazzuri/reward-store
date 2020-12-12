@@ -8,13 +8,13 @@ import ProductsPage from "../pages/ProductsPage";
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path="/reward-store">
         <ProductsPage />
       </Route>
-      <Route path="/history">
+      <Route path="/reward-store/history">
         <HistoryPage />
       </Route>
-      <Route path="/points">
+      <Route path="/reward-store/points">
         <EarnPointsPage />
       </Route>
       <Route path="/">
