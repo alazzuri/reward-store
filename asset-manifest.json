@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/reward-store/static/css/main.02abc8d8.chunk.css",
+    "main.js": "/reward-store/static/js/main.2744e573.chunk.js",
+    "main.js.map": "/reward-store/static/js/main.2744e573.chunk.js.map",
+    "runtime-main.js": "/reward-store/static/js/runtime-main.deb683d4.js",
+    "runtime-main.js.map": "/reward-store/static/js/runtime-main.deb683d4.js.map",
+    "static/css/2.adb6ee89.chunk.css": "/reward-store/static/css/2.adb6ee89.chunk.css",
+    "static/js/2.b47899d9.chunk.js": "/reward-store/static/js/2.b47899d9.chunk.js",
+    "static/js/2.b47899d9.chunk.js.map": "/reward-store/static/js/2.b47899d9.chunk.js.map",
+    "index.html": "/reward-store/index.html",
+    "precache-manifest.41a9b3ba404a5fb3876802bca779472e.js": "/reward-store/precache-manifest.41a9b3ba404a5fb3876802bca779472e.js",
+    "service-worker.js": "/reward-store/service-worker.js",
+    "static/css/2.adb6ee89.chunk.css.map": "/reward-store/static/css/2.adb6ee89.chunk.css.map",
+    "static/css/main.02abc8d8.chunk.css.map": "/reward-store/static/css/main.02abc8d8.chunk.css.map",
+    "static/js/2.b47899d9.chunk.js.LICENSE.txt": "/reward-store/static/js/2.b47899d9.chunk.js.LICENSE.txt",
+    "static/media/404.png": "/reward-store/static/media/404.b702be85.png",
+    "static/media/Error.png": "/reward-store/static/media/Error.8afe435d.png",
+    "static/media/arrow-left.2e6efe58.svg": "/reward-store/static/media/arrow-left.2e6efe58.svg",
+    "static/media/arrow-right.bedef383.svg": "/reward-store/static/media/arrow-right.bedef383.svg",
+    "static/media/buy-blue.2f11a957.svg": "/reward-store/static/media/buy-blue.2f11a957.svg",
+    "static/media/buy-white.40bc2813.svg": "/reward-store/static/media/buy-white.40bc2813.svg",
+    "static/media/chevron-down.45b4f9cd.svg": "/reward-store/static/media/chevron-down.45b4f9cd.svg",
+    "static/media/coin.4669120c.svg": "/reward-store/static/media/coin.4669120c.svg",
+    "static/media/header-x1.png": "/reward-store/static/media/header-x1.f0b98264.png",
+    "static/media/header-x2.png": "/reward-store/static/media/header-x2.a343e153.png",
+    "static/media/main-logo.svg": "/reward-store/static/media/main-logo.97a787bd.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.deb683d4.js",
+    "static/css/2.adb6ee89.chunk.css",
+    "static/js/2.b47899d9.chunk.js",
+    "static/css/main.02abc8d8.chunk.css",
+    "static/js/main.2744e573.chunk.js"
+  ]
+}
