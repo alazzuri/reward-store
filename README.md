@@ -1,44 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Rewards Store
 
-## Available Scripts
+### Aplicación de canje de puntos por premios.
 
-In the project directory, you can run:
+[English Version](./README-en.md)
 
-### `yarn start`
+---
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src="./src/assets/readme/readme-mockup.png" style=" width:80%; margin-top:30px;">
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Tercer proyecto del curso de Frontend Avanzado en React dictado por [Acamica](https://acamica.com).
 
-### `yarn test`
+La aplicación consiste en una página para canjear puntos por premios. El usuario puede visualizar y filtrar los productos disponibles, y canjear aquél que le guste utilizando para ello los puntos disponibles en su cuenta. Asimismo, se ofrece la oportunidad de obtener puntos a partir de un sistema aleatorio. También, se ofrece un historial de canjes para que el usuario pueda visualizar los últimos productos canjeados.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para crear la aplicación se utilizó el entorno provisto por [Create React App](https://github.com/facebook/create-react-app).
+
+## Instalación.
+
+### **Clonar el repositorio**
+
+```
+git clone https://github.com/alazzuri/reward-store.git
+
+```
+
+### **Instalar dependencias**
+
+```
+
+npm install
+
+```
+
+o
+
+```
+
+yarn install
+
+```
+
+### **Iniciar la aplicación**
+
+Dentro del directorio de la aplicación, se pueden ejecutar los siguientes comandos:
+
+#### `yarn start`
+
+Inicializa la aplicación en un entorno de desarrollo<br />
+Una vez ejecutado el comando, se puede acceder a [http://localhost:3000/reward-store](http://localhost:3000/reward-store) para visualizar la misma en el navegador.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Realiza el _build_ correspondiente de la aplicación para producción, en la carpeta `build`.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `yarn test`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ejecuta los tests unitarios disponibles en la aplicación, exponiendo el resultado en la consola.
 
-### `yarn eject`
+Librerías y dependencias utilizadas:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- React
+- React DOM
+- Babel
+- Typescript
+- React Router
+- Tailwind
+- Material UI
+- Redux con thunk
+- Moment Js
+- Google Fonts
+- React Spinners
+- React Lottie
+- DayJs
+- Normalize CSS
+- React Confetti
+- React Loading Skeleton
+- UUID
+- SweetAlert
+- Numeral
+- Jest
+- React Testing Library
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).-
+## [Live Demo](https://alazzuri.github.io/reward-store/)
